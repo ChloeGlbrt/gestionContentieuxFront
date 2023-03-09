@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,8 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
+import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { RoleComponent } from './role/role.component';
     RouterModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -40,7 +43,9 @@ import { RoleComponent } from './role/role.component';
     TacheComponent,
     AffaireComponent,
     DocumentComponent,
-    RoleComponent
+    RoleComponent,
+    EditTribunalComponent,
+    AccueilComponent
 
   ],
   providers: [],

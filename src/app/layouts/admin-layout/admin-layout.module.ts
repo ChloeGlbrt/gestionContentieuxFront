@@ -14,6 +14,9 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TribunalService } from '../../services/tribunal.service';
+
 
 @NgModule({
   imports: [
@@ -22,6 +25,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
     FormsModule,
     ChartsModule,
     NgbModule,
+    HttpClientModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -33,7 +37,9 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-  ]
+  ], 
+
+providers :[TribunalService]
 })
 
 export class AdminLayoutModule {}
