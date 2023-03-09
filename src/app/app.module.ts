@@ -12,6 +12,13 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { TribunalComponent } from './tribunal/tribunal.component';
+import { PhaseComponent } from './phase/phase.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { TacheComponent } from './tache/tache.component';
+import { AffaireComponent } from './affaire/affaire.component';
+import { DocumentComponent } from './document/document.component';
+import { RoleComponent } from './role/role.component';
 
 @NgModule({
   imports: [
@@ -26,7 +33,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    TribunalComponent,
+    PhaseComponent,
+    UtilisateurComponent,
+    TacheComponent,
+    AffaireComponent,
+    DocumentComponent,
+    RoleComponent
 
   ],
   providers: [],
