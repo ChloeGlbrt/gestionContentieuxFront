@@ -28,6 +28,7 @@ import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.compon
 import { AccueilComponent } from './accueil/accueil.component';
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -56,6 +57,7 @@ import { AccueilComponent } from './accueil/accueil.component';
     EditTribunalComponent,
     AccueilComponent,
     LoginComponent
+  
 
 
   ],

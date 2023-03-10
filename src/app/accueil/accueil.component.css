@@ -74,4 +74,9 @@
     position: relative;
   }
 
+#carouselAccueil {
+    margin-top: 50px;
+    max-width: 400px;
+    margin-bottom: 50px;  
+  }
 

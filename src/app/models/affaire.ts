@@ -11,5 +11,6 @@ export class Affaire {
 
     documents! : Document[];
     taches! : Tache[];
+    dateAffaire!: Date;
 
 }
