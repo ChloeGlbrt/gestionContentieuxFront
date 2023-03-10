@@ -27,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { PlanningComponent } from './planning/planning.component';
+import { EditTacheComponent } from './edit/edit-tache/edit-tache.component';
+
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { PlanningComponent } from './planning/planning.component';
     EditTribunalComponent,
     AccueilComponent,
     LoginComponent,
-    PlanningComponent
+    PlanningComponent,
+    EditTacheComponent,
+
 
 
   ],
