@@ -4,17 +4,6 @@
         border-color: dimgray;
     }
 </style>
-
-
-
-
-
-
-
-
-
-
-
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
@@ -34,6 +23,7 @@
                                     <input type="text" [(ngModel)]="affaire.reference" name="reference"
                                         class="form-control" placeholder="reference">
                                 </div>
+
                             </div>
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
@@ -42,28 +32,43 @@
                                         placeholder="Titre de l'affaire">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 px-1">
                                 <div class="form-group">
                                     <label>Description</label>
-
                                     <textarea [(ngModel)]="affaire.description" name="description" class="form-control"
-                                        placeholder="Description de l'affaire" rows="5" cols="33">
+                                        rows="5" cols="33">
                                    </textarea>
                                 </div>
                             </div>
-
-                            <div class="col-md-4 pl-1">
-                                <!-- <div class="form-group">
-                                <label>Statut</label>
-                                <input type="text" [(ngModel)]="affaire.statut" name = "statut" class="form-control" placeholder="statut">
-                                
-                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 p1-1">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" [(ngModel)]="affaire.dateAffaire" name="dateAffaire"
+                                        class="form-control">
+                                </div>
                             </div>
                         </div>
-
-
+                        <div class="row">
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Statut</label>
+                                    <select class="form-control form-control-alternative" [(ngModel)]="affaire.statut"
+                                        name="statut">
+                                        <option value="0">A venir</option>
+                                        <option value="1">En cours</option>
+                                        <option value="2">Traité</option>
+                                        <option value="3">Archivé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <button class="btn btn-round btn-danger" type="submit">Add</button>
+
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -81,9 +86,11 @@
                             <th>Reference</th>
                             <th>Titre</th>
                             <th>Description</th>
-                            <!-- <th >Statut</th> -->
+                            <th>Date</th>
+                            <th>Statut</th>
                             <th>Action</th>
                             <th>PDF</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -91,15 +98,14 @@
                             <td>{{a.reference}}</td>
                             <td>{{a.titre}}</td>
                             <td>{{a.description}}</td>
-                            <!-- <td>{{a.statut}}</td> -->
-
-
+                            <td>{{a.dateAffaire}}</td>
+                            <td>{{convertStatutToString(a.statut)}}</td>
                             <td>
                                 <button class="btn btn-round btn-outline-danger"
                                     (click)="deleteAffaire(a.idAffaire)">Delete</button>
-
                             </td>
                             <td><button class="btn btn-round btn-info">Edit</button></td>
+
                         </tr>
                     </tbody>
                 </table>

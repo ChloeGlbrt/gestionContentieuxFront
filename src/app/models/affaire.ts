@@ -3,14 +3,16 @@ import { Tache } from "./tache";
 
 export class Affaire {
 
-    idAffaire! : number;
-    reference! : string;
-    titre! : string;
-    description! : string;
-    statut! : boolean;
 
-    documents! : Document[];
-    taches! : Tache[];
+    idAffaire!: number;
+    reference!: string;
+    titre!: string;
+    description!: string;
     dateAffaire!: Date;
+    statut!: boolean;
+
+    documents!: Document[];
+    taches!: Tache[];
+
 
 }

@@ -22,20 +22,13 @@ export const ROUTES: RouteInfo[] = [
   { path: '/login', title: 'Disconnect', icon: 'media-1_button-power', class: 'active active-pro' },
   { path: '/login', title: 'Login', icon: 'users_single-02', class: '' },
   { path: '/role', title: 'Role', icon: 'users_single-02', class: '' },
-<<<<<<< HEAD
-  { path: '/utilisateur', title: 'Users', icon: 'users_single-02', class: '' },
-  { path: '/tribunaux' , title: 'Court', icon :'business_bank', class: ''},
-  { path: '/affaires', title: 'Affaires', icon:'', class: ''  },
-  { path: '/documents', title: 'Documents', icon:'education_paper', class:'' },
-=======
-
   { path: '/utilisateur', title: 'Users', icon: 'users_circle-08', class: '' },
   { path: '/tribunaux', title: 'Court', icon: 'business_bank', class: '' },
   { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: '' },
   { path: '/affaires', title: 'Affaires', icon: 'business_briefcase-24', class: '' },
   { path: '/documents', title: 'Documents', icon: 'education_agenda-bookmark', class: '' },
   { path: '/tache', title: 'Tasks', icon: 'business_bank', class: '' },
->>>>>>> a472b6f9f475d762e34a1e0afcd1bed8a0c83b1d
+
 
 
 ];
