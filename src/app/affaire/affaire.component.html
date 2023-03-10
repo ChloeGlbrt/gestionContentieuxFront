@@ -23,6 +23,7 @@
                                     <input type="text" [(ngModel)]="affaire.reference" name="reference"
                                         class="form-control" placeholder="reference">
                                 </div>
+
                             </div>
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
@@ -66,7 +67,8 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-danger" type="submit">Add</button>
+                            <button class="btn btn-round btn-danger" type="submit">Add</button>
+
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -87,6 +89,8 @@
                             <th>Date</th>
                             <th>Statut</th>
                             <th>Action</th>
+                            <th>PDF</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -97,10 +101,11 @@
                             <td>{{a.dateAffaire}}</td>
                             <td>{{convertStatutToString(a.statut)}}</td>
                             <td>
-                                <button class="btn btn-outline-danger"
+                                <button class="btn btn-round btn-outline-danger"
                                     (click)="deleteAffaire(a.idAffaire)">Delete</button>
-                                <button class="btn btn-info">Edit</button>
                             </td>
+                            <td><button class="btn btn-round btn-info">Edit</button></td>
+
                         </tr>
                     </tbody>
                 </table>

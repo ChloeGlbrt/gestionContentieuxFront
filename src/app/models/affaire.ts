@@ -3,6 +3,7 @@ import { Tache } from "./tache";
 
 export class Affaire {
 
+
     idAffaire!: number;
     reference!: string;
     titre!: string;
@@ -12,5 +13,6 @@ export class Affaire {
 
     documents!: Document[];
     taches!: Tache[];
+
 
 }

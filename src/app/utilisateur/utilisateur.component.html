@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-danger">Add</button>
+                            <button class="btn btn-round btn-danger">Add</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -110,9 +110,9 @@
                                 <p *ngFor="let r of u.roles">{{r.libelle}}</p>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger"
+                                <button class="btn btn-round btn-outline-danger"
                                     (click)="deleteUtilisateur(u.idUtilisateur)">Delete</button>
-                                <button class="btn btn-info" (click)="editUtilisateur(u)">Edit</button>
+                                <button class="btn btn-round btn-info" (click)="editUtilisateur(u)">Edit</button>
                             </td>
                         </tr>
                     </tbody>
