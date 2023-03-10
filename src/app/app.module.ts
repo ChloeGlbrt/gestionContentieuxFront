@@ -19,8 +19,12 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
+
 import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisateur.component';
 import { LoginComponent } from './login/login.component';
+import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
+import { AccueilComponent } from './accueil/accueil.component';
+
 
 @NgModule({
   imports: [
@@ -32,6 +36,7 @@ import { LoginComponent } from './login/login.component';
     RouterModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -45,6 +50,9 @@ import { LoginComponent } from './login/login.component';
     DocumentComponent,
     RoleComponent,
     EditUtilisateurComponent,
+    EditTribunalComponent,
+    AccueilComponent
+
 
   ],
   providers: [],
