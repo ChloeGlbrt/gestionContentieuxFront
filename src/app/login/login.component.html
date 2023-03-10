@@ -1,0 +1,39 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row justify-content-center">
+        <div class="col-md-4 pr-1">
+            <div class=" card">
+                <div class="card-header">
+                    <h5 style="text-align: center;" class="title">Sign in with credentials</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form (submit)="login()" role="form">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group text-center">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" placeholder="Your username" type="text"
+                                        [(ngModel)]="credentials.username" name="username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group text-center">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" placeholder="Your password"
+                                        [(ngModel)]="credentials.password" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-danger">Sign in</button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>

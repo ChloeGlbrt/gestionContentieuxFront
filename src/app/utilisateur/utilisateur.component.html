@@ -1,1 +1,110 @@
-<p>utilisateur works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Create User Profile</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form (ngSubmit)="saveUtilisateur()">
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Firstname</label>
+                                    <input type="text" class="form-control" placeholder="Your firstname"
+                                        [(ngModel)]="utilisateur.nomUtilisateur" name="nomUtilisateur">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Lastname</label>
+                                    <input type="text" class="form-control" placeholder="Your lastname"
+                                        [(ngModel)]="utilisateur.prenomUtilisateur" name="prenomUtilisateur">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input name="email" id="email" type="email" class="form-control"
+                                        placeholder="Your email" [(ngModel)]="utilisateur.email" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" placeholder="Your username"
+                                        [(ngModel)]="utilisateur.username" name="username">
+                                </div>
+                            </div>
+                            <div class=" col-md-6 pl-1">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" placeholder="Your password"
+                                        [(ngModel)]="utilisateur.password" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <select class="form-control form-control-alternative" multiple name="roles"
+                                        [(ngModel)]="utilisateur.roles">
+                                        <option *ngFor="let r of roles" [ngValue]="r">{{r.libelle}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger">Add</button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données début-->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>Lastname</th>
+                            <th>Firstname</th>
+                            <th>Email</th>
+                            <th>Username </th>
+                            <th>Password</th>
+                            <th>Role</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let u of users">
+                            <td>{{u.nomUtilisateur}}</td>
+                            <td>{{u.prenomUtilisateur}}</td>
+                            <td>{{u.email}}</td>
+                            <td>{{u.username}}</td>
+                            <td>{{u.password}}</td>
+                            <td>
+                                <p *ngFor="let r of u.roles">{{r.libelle}}</p>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger"
+                                    (click)="deleteUtilisateur(u.idUtilisateur)">Delete</button>
+                                <button class="btn btn-info" (click)="editUtilisateur(u)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données fin-->
+</div>
