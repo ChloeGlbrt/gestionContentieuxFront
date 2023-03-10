@@ -27,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: ''},
   { path: '/affaires', title: 'Affaires', icon:'', class: ''  },
   { path: '/documents', title: 'Documents', icon:'', class:'' },
-
+   { path: '/tache', title: 'Tasks', icon: 'business_bank', class: '' },
 
 ];
 

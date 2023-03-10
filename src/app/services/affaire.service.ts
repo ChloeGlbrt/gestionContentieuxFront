@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AffaireService {
   private BASE_URL = "http://localhost:8080/affaires"
   constructor(private httpClient:HttpClient) { }
-
+  
   public findAll() : Observable<any>
   {return this.httpClient.get(this.BASE_URL);}
 
@@ -25,4 +25,5 @@ export class AffaireService {
     var affaireJSON = JSON.parse(affaire);
     return this.httpClient.put(this.BASE_URL + "/" + affaireJSON.idAffaire, affaireJSON);
   }
+
 }
