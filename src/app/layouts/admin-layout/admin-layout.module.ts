@@ -60,6 +60,7 @@ import { TacheService } from '../../services/tache.service';
     NotificationsComponent,
   ],
 
+
   providers: [
     UtilisateurService,
     RoleService,
@@ -71,6 +72,7 @@ import { TacheService } from '../../services/tache.service';
     TacheService
 
   ]
+
 
 })
 
