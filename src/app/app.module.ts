@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,16 +21,24 @@ import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
 import { DocumentService } from './services/document.service';
 import { AffaireService } from './services/affaire.service';
+import { EditPhaseComponent } from './edit/edit-phase/edit-phase.component';
+import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisateur.component';
+import { LoginComponent } from './login/login.component';
+import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
+import { AccueilComponent } from './accueil/accueil.component';
+
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -42,7 +50,13 @@ import { AffaireService } from './services/affaire.service';
     TacheComponent,
     AffaireComponent,
     DocumentComponent,
-    RoleComponent
+    RoleComponent,
+    EditPhaseComponent,
+    EditUtilisateurComponent,
+    EditTribunalComponent,
+    AccueilComponent,
+    LoginComponent
+
 
   ],
   providers: [AffaireService, DocumentService],
