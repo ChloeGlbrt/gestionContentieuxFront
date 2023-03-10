@@ -22,9 +22,9 @@ export const ROUTES: RouteInfo[] = [
   { path: '/login', title: 'Login', icon: 'users_single-02', class: '' },
   { path: '/role', title: 'Role', icon: 'users_single-02', class: '' },
   { path: '/utilisateur', title: 'Users', icon: 'users_single-02', class: '' },
-    { path: '/tribunaux' , title: 'Court', icon :'business_bank', class: ''},
-    { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: ''},
-
+  { path: '/tribunaux', title: 'Court', icon: 'business_bank', class: '' },
+  { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: '' },
+  { path: '/tache', title: 'Tasks', icon: 'business_bank', class: '' },
 
 ];
 

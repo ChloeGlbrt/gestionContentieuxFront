@@ -13,6 +13,7 @@ import { LoginComponent } from '../../login/login.component';
 import { EditTribunalComponent } from '../../edit/edit-tribunal/edit-tribunal.component';
 import { TribunalComponent } from '../../tribunal/tribunal.component';
 import { AccueilComponent } from '../../accueil/accueil.component';
+import { TacheComponent } from '../../tache/tache.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -30,10 +31,11 @@ export const AdminLayoutRoutes: Routes = [
   //  { path: 'notifications',  component: NotificationsComponent },
   { path: 'editPhase/:id', component: EditPhaseComponent },
   { path: 'upgrade', component: UpgradeComponent },
-  { path :'editTribunal/:id', component:EditTribunalComponent},
-  { path :'tribunaux', component:TribunalComponent},
-  { path: 'upgrade',        component: UpgradeComponent },
-  { path: 'accueil', component:AccueilComponent},
+  { path: 'editTribunal/:id', component: EditTribunalComponent },
+  { path: 'tribunaux', component: TribunalComponent },
+  { path: 'upgrade', component: UpgradeComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'tache', component: TacheComponent },
 
 
 ];
