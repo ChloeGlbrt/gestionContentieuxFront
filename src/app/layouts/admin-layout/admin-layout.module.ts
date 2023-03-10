@@ -59,6 +59,7 @@ import { TribunalService } from '../../services/tribunal.service';
     NotificationsComponent,
   ],
 
+
   providers: [
     UtilisateurService,
     RoleService,
@@ -69,6 +70,7 @@ import { TribunalService } from '../../services/tribunal.service';
     LoginComponent
 
   ]
+
 
 })
 
