@@ -14,6 +14,8 @@ import { LoginComponent } from '../../login/login.component';
 import { EditTribunalComponent } from '../../edit/edit-tribunal/edit-tribunal.component';
 import { TribunalComponent } from '../../tribunal/tribunal.component';
 import { AccueilComponent } from '../../accueil/accueil.component';
+import { EditAffaireComponent } from '../../edit/edit-affaire/edit-affaire.component';
+import { EditDocumentComponent } from '../../edit/edit-document/edit-document.component';
 
 
 
@@ -38,6 +40,7 @@ export const AdminLayoutRoutes: Routes = [
   { path :'tribunaux', component:TribunalComponent},
   { path: 'upgrade',        component: UpgradeComponent },
   { path: 'accueil', component:AccueilComponent},
-
+  { path: 'editAffaire/:id',    component:EditAffaireComponent },
+  { path: 'editDocument/:id',   component:EditDocumentComponent}
 
 ];

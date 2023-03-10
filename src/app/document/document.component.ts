@@ -5,7 +5,6 @@ import { DocumentService } from '../services/document.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { map } from 'pdfmake/build/pdfmake';
 import pdffonts from 'pdfmake/build/vfs_fonts';
-import { data } from 'jquery';
 pdfMake.vfs = pdffonts.pdfMake.vfs;
 
 
@@ -22,11 +21,11 @@ export class DocumentComponent implements OnInit {
   constructor(private documentService:DocumentService, private router:Router) { }
 
   ngOnInit(): void {
+    this.findAllDocument();
   }
   
   findAllDocument(){
-    this.documentService.findAll().subscribe(data => {this.documents = data;
-    /*this.createPdf(data)*/});
+    this.documentService.findAll().subscribe(data => {this.documents = data;});
   }
   saveDocument(){
     this.documentService.save(this.document).subscribe(
@@ -44,66 +43,6 @@ export class DocumentComponent implements OnInit {
     }
   )
 }
-
-/*generatePdf(){
-  const doc = this.getDocument();
-  pdfMake.createPdf(doc).open();
-}
-
-getDocument(){
-  return {
-    content: [
-      {
-        columns:[
-          [{
-            text:'Tribunal de Paris',
-            style: 'name'
-          },
-        {
-          text: 'Contentieux n° '
-        },
-      ]
-        ]
-      },
-      
-        this.getList(this.documentService.findAll),
-      {
-
-      },
-    ],
-    tableHeader:{
-      bold:true,
-      fontSize: 15,
-      alignement: 'center'
-    }
-
-  };
-}
-getList(items:Document[]){
-  return{
-    table: {
-      widths: ['*', '*', '*'],
-      body:[
-        [{
-          text: 'Titre',
-          style: 'tableHeader'
-        },
-        {
-          text: 'Date de Creation',
-          style: 'tableHeader'
-        },
-        {
-          text: 'Description',
-          style: 'tableHeader'
-        }
-        ],
-        ...items.map(i =>{
-          return [i.nom, i.dateCreation, i.description]
-        })
-      ]
-    }
-  }
-}*/
 
 createPdf(){
   const pdfDef:any = {
@@ -145,4 +84,11 @@ createPdf(){
   const pdf = pdfMake.createPdf(pdfDef);
   pdf.open(); 
 }
+
+editDocument(document: Document) {
+  localStorage.removeItem("editDocumentId");
+  localStorage.setItem("editDocumentId", document.idDocument.toString());
+  this.router.navigate(['/editDocument', document.idDocument]);
+}
+
 }

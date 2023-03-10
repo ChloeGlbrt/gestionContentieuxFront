@@ -4,15 +4,11 @@ textarea{
     border-color: dimgray;
 }
 
+select{
+    width: 20%;
+}
+
 </style>
-
-
-
-
-
-
-
-
 
 
 
@@ -52,15 +48,24 @@ textarea{
                                </div>
                            </div>
                           
-                           <div class="col-md-4 pl-1">
-                            <!-- <div class="form-group">
+                          <!-- <div class="col-md-4 pl-1">
+                             <div class="form-group">
                                 <label>Statut</label>
                                 <input type="text" [(ngModel)]="affaire.statut" name = "statut" class="form-control" placeholder="statut">
                                 
-                            </div> -->
-                        </div>
-                       </div>
-                    
+                            </div> 
+                        </div>-->
+                        <div class="col-md-4 px-1">
+                        <td>Document</td>
+                <td>
+                    <select class = "form-select form-select-sm" multiple name="documents" [(ngModel)]="affaire.documents">
+                        <option *ngFor="let d of documents" [ngValue]="d">
+                            {{d.nom}}
+                        </option>
+                    </select>
+                </td>
+                    </div>
+                      </div>                   
                        
                        <div>
                            <button class="btn btn-danger" type="submit">Add</button>
@@ -82,6 +87,7 @@ textarea{
                            <th>Titre</th>
                            <th>Description</th>
                            <!-- <th >Statut</th> -->
+                           <th>Document</th>
                            <th>Action</th>
                         
                        </tr>
@@ -91,13 +97,14 @@ textarea{
                             <td>{{a.reference}}</td>
                            <td>{{a.titre}}</td>
                            <td>{{a.description}}</td>
+                           <td>{{a.documents}}</td>
                            <!-- <td>{{a.statut}}</td> -->
                         
                         
                            <td>
                                <button class="btn btn-outline-danger"
                                    (click)="deleteAffaire(a.idAffaire)">Delete</button>
-                               <button class="btn btn-info">Edit</button>
+                               <button class="btn btn-info" (click)="editAffaire(a)">Edit</button>
                            </td>
                        </tr>
                    </tbody>

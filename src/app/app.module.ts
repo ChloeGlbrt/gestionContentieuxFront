@@ -19,13 +19,14 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
-import { DocumentService } from './services/document.service';
-import { AffaireService } from './services/affaire.service';
 import { EditPhaseComponent } from './edit/edit-phase/edit-phase.component';
 import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisateur.component';
 import { LoginComponent } from './login/login.component';
 import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { EditAffaireComponent } from './edit/edit-affaire/edit-affaire.component';
+import { EditDocumentComponent } from './edit/edit-document/edit-document.component';
+import { AffaireService } from './services/affaire.service';
 
 
 @NgModule({
@@ -55,11 +56,13 @@ import { AccueilComponent } from './accueil/accueil.component';
     EditUtilisateurComponent,
     EditTribunalComponent,
     AccueilComponent,
-    LoginComponent
+    LoginComponent,
+    EditAffaireComponent,
+    EditDocumentComponent
 
 
   ],
-  providers: [AffaireService, DocumentService],
+  providers: [AffaireService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
