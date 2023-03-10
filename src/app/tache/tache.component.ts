@@ -16,16 +16,17 @@ export class TacheComponent implements OnInit {
 
   taches!: any[];
   phases!: any[];
-  tribunaux!: any[];
-  affaires!: any[];
+  tribunalFK!: any;
+  affaireFK!: any;
   tache: Tache = new Tache();
+
 
   constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService) { }
 
   ngOnInit(): void {
     this.findAllTache();
     this.findAllPhase();
-    //  this.findAllAffaire();
+    this.findAllAffaire();
     this.findAllTribunal();
   }
 
@@ -33,13 +34,22 @@ export class TacheComponent implements OnInit {
     this.tacheService.findAll().subscribe(data => { this.taches = data });
   }
   saveTache() {
+    // if (!this.tache.titre || !this.tache.description || !this.tache.affaireFK || !this.tache.tribunalFK || !this.tache.phases) {
+    //  alert("Missing information");
+    //   return;
+    // }
+    this.tache.dateCreation = new Date(); // ajout de la date actuelle
+    //this.tache.affaireFK = this.affaireFK;
     this.tacheService.save(this.tache).subscribe(
       () => {
         this.findAllTache();
         this.tache = new Tache();
+        alert("Task added successfully")
       }
     )
   }
+
+
   deleteTache(id: number) {
     this.tacheService.delete(id).subscribe(() => { this.findAllTache() });
   }
@@ -49,7 +59,8 @@ export class TacheComponent implements OnInit {
     this.router.navigate(['/editTache', tache.idTache]);
   }
 
-  findAllTribunal() { this.tribunalService.findAll().subscribe(data => { this.tribunaux = data }); }
+
+  findAllTribunal() { this.tribunalService.findAll().subscribe(data => { this.tribunalFK = data }); }
   findAllPhase() { this.phaseService.findAll().subscribe(data => { this.phases = data }); }
-  // findAllAffaire() { this.affaireService.findAll().subscribe(data => { this.affaires = data }); }
+  findAllAffaire() { this.affaireService.findAll().subscribe(data => { this.affaireFK = data }); }
 }

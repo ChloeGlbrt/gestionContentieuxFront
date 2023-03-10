@@ -13,6 +13,9 @@ import { TacheService } from '../../services/tache.service';
 export class EditTacheComponent implements OnInit {
 
   tache: Tache = new Tache();
+  phases!: any[];
+  tribunalFK!: any[];
+  affaireFK!: any[];
   editForm!: FormGroup;
 
   constructor(private routeur: Router, private tacheService: TacheService, private formBuilder: FormBuilder) { }
@@ -33,9 +36,9 @@ export class EditTacheComponent implements OnInit {
       description: ['', Validators.required],
       statutAudience: ['', Validators.required],
       //utilisateur: ['', Validators.required],
-      affaire: ['', Validators.required],
-      tribunal: ['', Validators.required],
-      phase: ['', Validators.required],
+      affaireFK: ['', Validators.required],
+      tribunalFK: ['', Validators.required],
+      phases: ['', Validators.required],
 
     })
     this.tacheService.findOne(+currentTache).subscribe(data => { this.editForm.setValue(data); });
