@@ -19,6 +19,8 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
+import { DocumentService } from './services/document.service';
+import { AffaireService } from './services/affaire.service';
 
 @NgModule({
   imports: [
@@ -43,7 +45,7 @@ import { RoleComponent } from './role/role.component';
     RoleComponent
 
   ],
-  providers: [],
+  providers: [AffaireService, DocumentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
