@@ -1,7 +1,7 @@
-
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
+<<<<<<< HEAD
    <div class="row">
        <div class="col-md-12">
            <div class="card">
@@ -21,7 +21,7 @@
                            <div class="col-md-4 px-1">
                                <div class="form-group">
                                    <label>Fax</label>
-                                   <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control" placeholder=" Fax number">
+                                   <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control" placeholder=" 00-00-00-00-00">
                                </div>
                            </div>
                            </div>
@@ -30,7 +30,7 @@
                                <div class="form-group">
                                    <label>Phone number</label>
                                    <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control"
-                                       placeholder="Phone number">
+                                       placeholder="00-00-00-00-00">
                                </div>
                            </div>
                            <div class="col-md-4 px-1">
@@ -59,7 +59,7 @@
                            <th>Adress</th>
                            <th>Fax</th>
                            <th>Phone number</th>
-                           <th>Administrative Region</th>
+                           <th>Administrative French Region</th>
                            <th>Option</th>
                        </tr>
                    </thead>
@@ -83,3 +83,88 @@
    <!--Table d'affichage des données fin-->
 </div>
 
+=======
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Create a Court</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form (ngSubmit)="save()">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label>Adress</label>
+                                    <input [(ngModel)]="tribunal.adresse" name="adresse" type="text"
+                                        class="form-control" placeholder="Adress">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Fax</label>
+                                    <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control"
+                                        placeholder=" Fax number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control"
+                                        placeholder="Phone number">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Administrative Region</label>
+                                    <input type="text" [(ngModel)]="tribunal.region" class="form-control"
+                                        placeholder=" Region">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-round btn-danger">Add</button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données début-->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>Adress</th>
+                            <th>Fax</th>
+                            <th>Phone number</th>
+                            <th>Administrative Region</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of tribunaux">
+                            <td>{{t.adresse}}</td>
+                            <td>{{t.fax}}</td>
+                            <td>{{t.tel}}</td>
+                            <td>{{t.region}}</td>
+                            <td>
+                                <button class="btn btn-round btn-outline-danger"
+                                    (click)="delete(t.idTribunal)">Delete</button>
+                                <button class="btn btn-round btn-info" (click)="editTribunal(t)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données fin-->
+</div>
+>>>>>>> a472b6f9f475d762e34a1e0afcd1bed8a0c83b1d

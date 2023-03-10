@@ -13,22 +13,24 @@ import { TacheService } from '../services/tache.service';
 export class AffaireComponent implements OnInit {
 
   affaire: Affaire = new Affaire();
+
   affaires! : any[];
   documents! : any[];
   taches! : any[];
 
   constructor(private documentService:DocumentService, private tacheService:TacheService, private affaireService:AffaireService, private router:Router) { }
 
+
   ngOnInit(): void {
     this.findAllAffaire();
     this.findAllDocument();
   }
 
-  findAllAffaire(){
-    this.affaireService.findAll().subscribe(data => {this.affaires = data;});
+  findAllAffaire() {
+    this.affaireService.findAll().subscribe(data => { this.affaires = data; });
   }
 
-  saveAffaire(){
+  saveAffaire() {
     this.affaireService.save(this.affaire).subscribe(
       () => {
         this.findAllAffaire();
@@ -37,13 +39,14 @@ export class AffaireComponent implements OnInit {
     )
   }
 
-  deleteAffaire(id:number){
+  deleteAffaire(id: number) {
     this.affaireService.delete(id).subscribe(
       () => {
         this.findAllAffaire();
       }
     )
   }
+
 
   editAffaire(affaire: Affaire) {
     localStorage.removeItem("editAffaireId");
@@ -58,4 +61,20 @@ export class AffaireComponent implements OnInit {
  /* findAllTache(){
     this.tacheService.findAll().subscribe(data => {this.taches = data});
   }*/
+
+  convertStatutToString(statut: number): string {
+    switch (statut) {
+      case 0:
+        return 'A venir';
+      case 1:
+        return 'En cours';
+      case 2:
+        return 'Traité';
+      case 3:
+        return 'Archivé';
+      default:
+        return 'Inconnu';
+    }
+  }
+
 }

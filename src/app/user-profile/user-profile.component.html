@@ -1,45 +1,47 @@
 <div class="panel-header panel-header-sm">
 </div>
-<div class="main-content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="title">User informations</h5>
-        </div>
-        <div class="card-body">
-          <!--Formulaire d'ajout début-->
-          <form>
-            <div class="row">
-              <div class="col-md-4 pr-1">
-                <div class="form-group">
-                  <label class="form-control-label" for="input-first-name">Firstname</label>
-                  <p type="text" class="form-control">{{user.nomUtilisateur}}</p>
+<div [hidden]="!authenticated()">
+  <div class="main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">User informations</h5>
+          </div>
+          <div class="card-body">
+            <!--Formulaire d'ajout début-->
+            <form>
+              <div class="row">
+                <div class="col-md-4 pr-1">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Firstname</label>
+                    <p type="text" class="form-control">{{user.nomUtilisateur}}</p>
+                  </div>
+                </div>
+                <div class="col-md-4 px-1">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Lastname</label>
+                    <p type="text" class="form-control">{{user.prenomUtilisateur}}</p>
+                  </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <p type="text" class="form-control">{{user.email}}</p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-4 px-1">
-                <div class="form-group">
-                  <label class="form-control-label" for="input-last-name">Lastname</label>
-                  <p type="text" class="form-control">{{user.prenomUtilisateur}}</p>
-                </div>
-              </div>
-              <div class="col-md-4 pl-1">
-                <div class="form-group">
-                  <label class="form-control-label" for="input-email">Email address</label>
-                  <p type="text" class="form-control">{{user.email}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 pr-1">
-                <div class="form-group">
-                  <label class="form-control-label" for="input-username">Username</label>
-                  <p type="text" class="form-control">{{user.username}}</p>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Username</label>
+                    <p type="text" class="form-control">{{user.username}}</p>
+                  </div>
                 </div>
               </div>
             </div>
             <div>
-              <button (click)="editUtilisateur(user)" class="btn btn-danger">Edit profile</button>
+              <button (click)="editUtilisateur(user)" class="btn btn-round btn-danger">Edit profile</button>
             </div>
           </form>
           <!--Formulaire d'ajout fin-->
@@ -47,3 +49,4 @@
       </div>
     </div>
   </div>
+</div>

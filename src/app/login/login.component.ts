@@ -20,7 +20,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.appService.authenticate(this.credentials, () => { this.router.navigateByUrl("/user-profile") });
+    this.appService.authenticate(this.credentials, () => { this.router.navigateByUrl("/accueil") });
 
   }
 

@@ -52,6 +52,18 @@
                         <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
+                                    <label>Statut</label>
+                                    <select class="form-control form-control-alternative"
+                                        [(ngModel)]="utilisateur.statutCompte" name="statutCompte">
+                                        <option value="false">Désactivé</option>
+                                        <option value="true">Activé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
                                     <label>Role</label>
                                     <select class="form-control form-control-alternative" multiple name="roles"
                                         [(ngModel)]="utilisateur.roles">
@@ -61,7 +73,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-danger">Add</button>
+                            <button class="btn btn-round btn-danger">Add</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -81,6 +93,7 @@
                             <th>Email</th>
                             <th>Username </th>
                             <th>Password</th>
+                            <th>Status</th>
                             <th>Role</th>
                             <th>Action </th>
                         </tr>
@@ -92,13 +105,14 @@
                             <td>{{u.email}}</td>
                             <td>{{u.username}}</td>
                             <td>{{u.password}}</td>
+                            <td>{{convertStatutToString(u.statutCompte)}}</td>
                             <td>
                                 <p *ngFor="let r of u.roles">{{r.libelle}}</p>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger"
+                                <button class="btn btn-round btn-outline-danger"
                                     (click)="deleteUtilisateur(u.idUtilisateur)">Delete</button>
-                                <button class="btn btn-info" (click)="editUtilisateur(u)">Edit</button>
+                                <button class="btn btn-round btn-info" (click)="editUtilisateur(u)">Edit</button>
                             </td>
                         </tr>
                     </tbody>

@@ -4,8 +4,8 @@ export class Tribunal {
 
     idTribunal! : number;
     adresse! : string;
-    fax! : number;
-    tel! : number;
+    fax! : string;
+    tel! : string;
     region! : string;
     taches! : Tache;
     

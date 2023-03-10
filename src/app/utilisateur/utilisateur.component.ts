@@ -65,6 +65,15 @@ export class UtilisateurComponent {
 
   }
 
+  convertStatutToString(statutCompte: boolean): string {
+    switch (statutCompte) {
+      case false:
+        return 'Désactivé';
+      case true:
+        return 'Activé';
+    }
+  }
+
   authenticated() {
     return this.appService.authenticated;
   }

@@ -1,3 +1,4 @@
+
 <style>
     textarea{
         border-radius: 10%;
@@ -46,14 +47,17 @@
                                
                                 <textarea [(ngModel)]="document.description" name="description" class="form-control"
                                 rows="5" cols="33">
+
                                 Description...
                                 </textarea>
+                                </div>
                             </div>
                         </div>
+
                        </div>
     
                        <div>
-                           <button class="btn btn-danger">Add</button>
+                           <button class="btn btn-round btn-danger">Add</button>
                        </div>
                    </form>
                    <!--Formulaire d'ajout fin-->
@@ -82,9 +86,9 @@
                            
                         
                            <td>
-                               <button class="btn btn-outline-danger"
+                               <button class="btn btn-round btn-outline-danger"
                                    (click)="deleteDocument(d.idDocument)">Delete</button>
-                               <button class="btn btn-info" (click)="editDocument(d)">Edit</button>
+                               <button class="btn  btn-round btn-info" (click)="editDocument(d)">Edit</button>
                                <button class="btn1" (click)="createPdf()"><img src="../../assets/img/pdf.png" width="40rem" height="35rem" />
                                </button>
                            </td>
@@ -96,4 +100,3 @@
    </div>
    <!--Table d'affichage des données fin-->
 </div>
-

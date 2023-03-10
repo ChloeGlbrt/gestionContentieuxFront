@@ -1,11 +1,12 @@
 <div class="logo">
-    <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-      <div class="logo-img">
-          <img src="./assets/img/logo.jpg"/>
-      </div>
+    <a href="http://localhost:4200/accueil" class="simple-text logo-mini">
+
+        <div class="logo-img">
+            <img src="./assets/img/logo.jpg" />
+        </div>
     </a>
-    <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
+    <a href="http://localhost:4200/accueil" class="simple-text logo-normal">
+        Litigation manager
     </a>
 </div>
 <div class="sidebar-wrapper">
@@ -16,12 +17,22 @@
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a (click)="logout()" class="btn btn-round btn-default text-center">
+                <div class="simple-text nav-item">
+                    Logout
+                    <i class="now-ui-icons"></i>
+                </div>
+            </a>
+        </li>
     </ul>
+
 </div>
 <div>
-    <button (click)="logout()" class="btn btn-sm btn-danger">
+    <button *ngIf="authenticated()" (click)="logout()" class="btn btn-sm btn-danger">
         <div>
             <i class="ni ni-button-power"></i>
         </div>
     </button>
+
 </div>

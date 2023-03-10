@@ -16,6 +16,9 @@ import { TribunalComponent } from '../../tribunal/tribunal.component';
 import { AccueilComponent } from '../../accueil/accueil.component';
 import { EditAffaireComponent } from '../../edit/edit-affaire/edit-affaire.component';
 import { EditDocumentComponent } from '../../edit/edit-document/edit-document.component';
+import { TacheComponent } from '../../tache/tache.component';
+import { EditTacheComponent } from '../../edit/edit-tache/edit-tache.component';
+
 
 
 
@@ -32,8 +35,8 @@ export const AdminLayoutRoutes: Routes = [
   //  { path: 'icons',          component: IconsComponent },
   //  { path: 'maps',           component: MapsComponent },
   //  { path: 'notifications',  component: NotificationsComponent },
-    { path: 'affaires',       component:AffaireComponent},
-    { path: 'documents',       component:DocumentComponent},
+  { path: 'affaires', component: AffaireComponent },
+  { path: 'documents', component: DocumentComponent },
   { path: 'editPhase/:id', component: EditPhaseComponent },
   { path: 'upgrade', component: UpgradeComponent },
   { path :'editTribunal/:id', component:EditTribunalComponent},
@@ -41,6 +44,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'upgrade',        component: UpgradeComponent },
   { path: 'accueil', component:AccueilComponent},
   { path: 'editAffaire/:id',    component:EditAffaireComponent },
-  { path: 'editDocument/:id',   component:EditDocumentComponent}
+  { path: 'editDocument/:id',   component:EditDocumentComponent},
+    { path: 'tache', component: TacheComponent },
+  { path: 'editTache/:id', component: EditTacheComponent },
+
 
 ];

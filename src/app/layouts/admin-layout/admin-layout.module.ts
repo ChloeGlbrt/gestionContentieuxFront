@@ -36,6 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TribunalService } from '../../services/tribunal.service';
 import { AffaireService } from '../../services/affaire.service';
 import { DocumentService } from '../../services/document.service';
+import { TacheService } from '../../services/tache.service';
+
 
 
 
@@ -71,7 +73,9 @@ import { DocumentService } from '../../services/document.service';
      PhaseService,
      AffaireService,
      DocumentService,
-    LoginComponent
+    LoginComponent,
+    TacheService
+
 
   ]
 

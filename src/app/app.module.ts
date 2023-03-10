@@ -27,6 +27,11 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { EditAffaireComponent } from './edit/edit-affaire/edit-affaire.component';
 import { EditDocumentComponent } from './edit/edit-document/edit-document.component';
 import { AffaireService } from './services/affaire.service';
+import { PlanningComponent } from './planning/planning.component';
+import { EditTacheComponent } from './edit/edit-tache/edit-tache.component';
+
+
+
 
 
 @NgModule({
@@ -58,7 +63,10 @@ import { AffaireService } from './services/affaire.service';
     AccueilComponent,
     LoginComponent,
     EditAffaireComponent,
-    EditDocumentComponent
+    EditDocumentComponent,
+    PlanningComponent,
+    EditTacheComponent,
+
 
 
   ],

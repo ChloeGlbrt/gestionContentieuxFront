@@ -13,8 +13,8 @@
                         <div class="row justify-content-center">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group text-center">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" placeholder="Your username" type="text"
+                                    <label><b>Username</b></label>
+                                    <input type="text" class="form-control" type="text"
                                         [(ngModel)]="credentials.username" name="username">
                                 </div>
                             </div>
@@ -22,14 +22,14 @@
                         <div class="row justify-content-center">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group text-center">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Your password"
-                                        [(ngModel)]="credentials.password" name="password">
+                                    <label><b>Password</b></label>
+                                    <input type="password" class="form-control" [(ngModel)]="credentials.password"
+                                        name="password">
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-danger">Sign in</button>
+                            <button class="btn btn-round btn-danger">Sign in</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
