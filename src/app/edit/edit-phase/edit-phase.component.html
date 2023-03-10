@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <!--Formulaire d'ajout début-->
-                    <form (ngSubmit)="savePhase()">
+                    <form [formGroup]="editForm">
                         <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-round btn-danger">Add</button>
+                            <button class="btn btn-round btn-info" (click)="updatePhase()">update</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -42,34 +42,4 @@
             </div>
         </div>
     </div>
-    <!--Table d'affichage des données début-->
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-                        <tr>
-                            <th>Name</th>
-                            <th>Start date</th>
-                            <th>End date</th>
-                            <th> Action </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of phases">
-                            <td>{{p.nom}}</td>
-                            <td *ngIf="p.dateDebut">{{p.dateDebut}}</td>
-                            <td *ngIf="p.dateFin">{{p.dateFin}}</td>
-                            <td>
-                                <button class="btn btn-round btn-outline-danger"
-                                    (click)="deletePhase(p.idPhase)">Delete</button>
-                                <button class="btn btn-round btn-info" (click)="editPhase(p)">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!--Table d'affichage des données fin-->
 </div>
