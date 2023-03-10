@@ -26,6 +26,9 @@ import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisate
 import { LoginComponent } from './login/login.component';
 import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { PlanningComponent } from './planning/planning.component';
+import { EditTacheComponent } from './edit/edit-tache/edit-tache.component';
+
 
 
 
@@ -56,8 +59,15 @@ import { AccueilComponent } from './accueil/accueil.component';
     EditUtilisateurComponent,
     EditTribunalComponent,
     AccueilComponent,
+<<<<<<< HEAD
     LoginComponent
   
+=======
+    LoginComponent,
+    PlanningComponent,
+    EditTacheComponent,
+
+>>>>>>> a472b6f9f475d762e34a1e0afcd1bed8a0c83b1d
 
 
   ],

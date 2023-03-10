@@ -12,8 +12,13 @@ export class AffaireService {
 
   public affaires: Affaire[];
   constructor(private httpClient:HttpClient) { }
+<<<<<<< HEAD
 
   /*public findAll() : Observable<any>
+=======
+  
+  public findAll() : Observable<any>
+>>>>>>> a472b6f9f475d762e34a1e0afcd1bed8a0c83b1d
   {return this.httpClient.get(this.BASE_URL);}
 */
 
@@ -36,6 +41,7 @@ public findAll(): Observable<any> {
     return this.httpClient.put(this.BASE_URL + "/" + affaireJSON.idAffaire, affaireJSON);
   }
 
+<<<<<<< HEAD
   getAffairesByMonth(): { [month: number]: number } {
     const affairesByMonth = {};
     this.affaires.forEach(affaire => {
@@ -50,4 +56,6 @@ public findAll(): Observable<any> {
     return affairesByMonth;
   }
 
+=======
+>>>>>>> a472b6f9f475d762e34a1e0afcd1bed8a0c83b1d
 }

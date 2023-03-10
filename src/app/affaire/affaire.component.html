@@ -1,9 +1,8 @@
 <style>
-textarea{
-    border-radius: 10%;
-    border-color: dimgray;
-}
-
+    textarea {
+        border-radius: 10%;
+        border-color: dimgray;
+    }
 </style>
 
 
@@ -19,92 +18,93 @@ textarea{
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
-   <div class="row">
-       <div class="col-md-12">
-           <div class="card">
-               <div class="card-header">
-                   <h5 class="title">Create Case </h5>
-               </div>
-               <div class="card-body">
-                   <!--Formulaire d'ajout début-->
-                   <form (ngSubmit)="saveAffaire()">
-                       <div class="row">
-                        <div class="col-md-4 pl-1">
-                            <div class="form-group">
-                                <label>Reference</label>
-                                <input type="text" [(ngModel)]="affaire.reference" name="reference" class="form-control"
-                                    placeholder="reference">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Create Case </h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form (ngSubmit)="saveAffaire()">
+                        <div class="row">
+                            <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label>Reference</label>
+                                    <input type="text" [(ngModel)]="affaire.reference" name="reference"
+                                        class="form-control" placeholder="reference">
+                                </div>
                             </div>
-                        </div>
-                           <div class="col-md-4 pr-1">
-                               <div class="form-group">
-                                   <label>Titre</label>
-                                   <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control" placeholder="Titre de l'affaire">
-                               </div>
-                           </div>
-                           <div class="col-md-6 px-1">
-                               <div class="form-group">
-                                   <label>Description</label>
-                                  
-                                   <textarea [(ngModel)]="affaire.description" name="description" class="form-control" placeholder="Description de l'affaire"
-                                   rows="5" cols="33">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Titre</label>
+                                    <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control"
+                                        placeholder="Titre de l'affaire">
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                    <label>Description</label>
+
+                                    <textarea [(ngModel)]="affaire.description" name="description" class="form-control"
+                                        placeholder="Description de l'affaire" rows="5" cols="33">
                                    </textarea>
-                               </div>
-                           </div>
-                          
-                           <div class="col-md-4 pl-1">
-                            <!-- <div class="form-group">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 pl-1">
+                                <!-- <div class="form-group">
                                 <label>Statut</label>
                                 <input type="text" [(ngModel)]="affaire.statut" name = "statut" class="form-control" placeholder="statut">
                                 
                             </div> -->
+                            </div>
                         </div>
-                       </div>
-                    
-                       
-                       <div>
-                           <button class="btn btn-danger" type="submit">Add</button>
-                       </div>
-                   </form>
-                   <!--Formulaire d'ajout fin-->
-               </div>
-           </div>
-       </div>
-   </div>
-   <!--Table d'affichage des données début-->
-   <div class="card">
-       <div class="card-body">
-           <div class="table-responsive">
-               <table class="table">
-                   <thead class=" text-primary">
-                       <tr>
-                            <th>Reference</th>
-                           <th>Titre</th>
-                           <th>Description</th>
-                           <!-- <th >Statut</th> -->
-                           <th>Action</th>
-                        
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <tr *ngFor="let a of affaires">
-                            <td>{{a.reference}}</td>
-                           <td>{{a.titre}}</td>
-                           <td>{{a.description}}</td>
-                           <!-- <td>{{a.statut}}</td> -->
-                        
-                        
-                           <td>
-                               <button class="btn btn-outline-danger"
-                                   (click)="deleteAffaire(a.idAffaire)">Delete</button>
-                               <button class="btn btn-info">Edit</button>
-                           </td>
-                       </tr>
-                   </tbody>
-               </table>
-           </div>
-       </div>
-   </div>
-   <!--Table d'affichage des données fin-->
-</div>
 
+
+                        <div>
+                            <button class="btn btn-round btn-danger" type="submit">Add</button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données début-->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>Reference</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <!-- <th >Statut</th> -->
+                            <th>Action</th>
+                            <th>PDF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of affaires">
+                            <td>{{a.reference}}</td>
+                            <td>{{a.titre}}</td>
+                            <td>{{a.description}}</td>
+                            <!-- <td>{{a.statut}}</td> -->
+
+
+                            <td>
+                                <button class="btn btn-round btn-outline-danger"
+                                    (click)="deleteAffaire(a.idAffaire)">Delete</button>
+
+                            </td>
+                            <td><button class="btn btn-round btn-info">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Table d'affichage des données fin-->
+</div>
