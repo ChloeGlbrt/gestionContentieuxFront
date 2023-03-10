@@ -22,7 +22,7 @@ export class EditPhaseComponent implements OnInit {
     let currentPhase = localStorage.getItem("editPhaseId");
     if (!currentPhase) {
       alert("Invalid Action");
-      this.routeur.navigate(["/phases"])
+      this.routeur.navigate(["/phase"])
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -36,6 +36,6 @@ export class EditPhaseComponent implements OnInit {
 
   updatePhase() {
     var phaseJson = JSON.stringify(this.editForm.value);
-    this.phaseService.update(phaseJson).subscribe(() => { this.routeur.navigate(['/phases']) });
+    this.phaseService.update(phaseJson).subscribe(() => { this.routeur.navigate(['/phase']) });
   }
 }

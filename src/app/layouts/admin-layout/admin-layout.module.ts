@@ -15,8 +15,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { PhaseService } from '../../services/phase.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { UtilisateurService } from '../../services/utilisateur.service';
 import { RoleService } from '../../services/role.service';
 import { LoginComponent } from '../../login/login.component';

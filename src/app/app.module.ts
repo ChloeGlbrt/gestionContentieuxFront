@@ -53,7 +53,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     EditPhaseComponent,
     EditUtilisateurComponent,
     EditTribunalComponent,
-    AccueilComponent
+    AccueilComponent,
+    LoginComponent
 
 
   ],

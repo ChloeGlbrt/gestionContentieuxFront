@@ -28,12 +28,12 @@ export const AdminLayoutRoutes: Routes = [
   //  { path: 'icons',          component: IconsComponent },
   //  { path: 'maps',           component: MapsComponent },
   //  { path: 'notifications',  component: NotificationsComponent },
-  { path: 'editPhase/:id', component: EditPhaseComponent }
-  { path: 'upgrade', component: UpgradeComponent }
-    { path :'editTribunal/:id', component:EditTribunalComponent},
-    { path :'tribunaux', component:TribunalComponent},
-    { path: 'upgrade',        component: UpgradeComponent },
-    { path: 'accueil', component:AccueilComponent}
+  { path: 'editPhase/:id', component: EditPhaseComponent },
+  { path: 'upgrade', component: UpgradeComponent },
+  { path :'editTribunal/:id', component:EditTribunalComponent},
+  { path :'tribunaux', component:TribunalComponent},
+  { path: 'upgrade',        component: UpgradeComponent },
+  { path: 'accueil', component:AccueilComponent},
 
 
 ];
