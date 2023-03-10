@@ -19,6 +19,7 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
+import { EditPhaseComponent } from './edit/edit-phase/edit-phase.component';
 
 import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisateur.component';
 import { LoginComponent } from './login/login.component';
@@ -49,6 +50,7 @@ import { AccueilComponent } from './accueil/accueil.component';
     AffaireComponent,
     DocumentComponent,
     RoleComponent,
+    EditPhaseComponent,
     EditUtilisateurComponent,
     EditTribunalComponent,
     AccueilComponent
