@@ -34,7 +34,10 @@ export class XhrInterceptor implements HttpInterceptor {
 
 import { HttpClientModule } from '@angular/common/http';
 import { TribunalService } from '../../services/tribunal.service';
+import { AffaireService } from '../../services/affaire.service';
+import { DocumentService } from '../../services/document.service';
 import { TacheService } from '../../services/tache.service';
+
 
 
 
@@ -67,9 +70,12 @@ import { TacheService } from '../../services/tache.service';
     AppService,
     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
     TribunalService,
-    PhaseService,
+     PhaseService,
+     AffaireService,
+     DocumentService,
     LoginComponent,
     TacheService
+
 
   ]
 

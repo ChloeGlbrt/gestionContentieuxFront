@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Affaire } from '../models/affaire';
 import { AffaireService } from '../services/affaire.service';
+import { DocumentService } from '../services/document.service';
+import { TacheService } from '../services/tache.service';
 
 @Component({
   selector: 'app-affaire',
@@ -11,12 +13,17 @@ import { AffaireService } from '../services/affaire.service';
 export class AffaireComponent implements OnInit {
 
   affaire: Affaire = new Affaire();
-  affaires!: any[];
 
-  constructor(private affaireService: AffaireService, private router: Router) { }
+  affaires! : any[];
+  documents! : any[];
+  taches! : any[];
+
+  constructor(private documentService:DocumentService, private tacheService:TacheService, private affaireService:AffaireService, private router:Router) { }
+
 
   ngOnInit(): void {
     this.findAllAffaire();
+    this.findAllDocument();
   }
 
   findAllAffaire() {
@@ -40,6 +47,21 @@ export class AffaireComponent implements OnInit {
     )
   }
 
+
+  editAffaire(affaire: Affaire) {
+    localStorage.removeItem("editAffaireId");
+    localStorage.setItem("editAffaireId", affaire.idAffaire.toString());
+    this.router.navigate(['/editAffaire', affaire.idAffaire]);
+  }
+
+  findAllDocument(){
+    this.documentService.findAll().subscribe(data => {this.documents = data});
+  }
+
+ /* findAllTache(){
+    this.tacheService.findAll().subscribe(data => {this.taches = data});
+  }*/
+
   convertStatutToString(statut: number): string {
     switch (statut) {
       case 0:
@@ -54,4 +76,5 @@ export class AffaireComponent implements OnInit {
         return 'Inconnu';
     }
   }
+
 }
