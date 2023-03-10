@@ -1,8 +1,7 @@
 export class Phase {
-    idPhase! : number;
-    nom! : string;
-    datedebut! : Date;
-    datefin!: Date;
-
-    //tacheFK! : Tache [];
+    idPhase!: number;
+    nom!: string;
+    dateDebut!: Date;
+    dateFin!: Date;
+    //tacheFK! : Tache;
 }

@@ -19,13 +19,19 @@ import { TacheComponent } from './tache/tache.component';
 import { AffaireComponent } from './affaire/affaire.component';
 import { DocumentComponent } from './document/document.component';
 import { RoleComponent } from './role/role.component';
+import { EditPhaseComponent } from './edit/edit-phase/edit-phase.component';
+
+import { EditUtilisateurComponent } from './edit/edit-utilisateur/edit-utilisateur.component';
+import { LoginComponent } from './login/login.component';
 import { EditTribunalComponent } from './edit/edit-tribunal/edit-tribunal.component';
 import { AccueilComponent } from './accueil/accueil.component';
+
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -44,8 +50,11 @@ import { AccueilComponent } from './accueil/accueil.component';
     AffaireComponent,
     DocumentComponent,
     RoleComponent,
+    EditPhaseComponent,
+    EditUtilisateurComponent,
     EditTribunalComponent,
     AccueilComponent
+
 
   ],
   providers: [],

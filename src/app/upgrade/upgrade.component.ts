@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-upgrade',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpgradeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private appService: AppService) { }
 
   ngOnInit() {
   }
 
+  authenticated() {
+    return this.appService.authenticated; // authenticated = false par défaut
+  }
+
+  logout() {
+    this.appService.logout();
+  }
+
 }
+

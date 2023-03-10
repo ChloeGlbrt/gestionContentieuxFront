@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,8 +14,29 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { PhaseService } from '../../services/phase.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { UtilisateurService } from '../../services/utilisateur.service';
+import { RoleService } from '../../services/role.service';
+import { LoginComponent } from '../../login/login.component';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AppService } from '../../app.service';
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
+
 import { HttpClientModule } from '@angular/common/http';
 import { TribunalService } from '../../services/tribunal.service';
+
 
 
 @NgModule({
@@ -23,6 +44,7 @@ import { TribunalService } from '../../services/tribunal.service';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     ChartsModule,
     NgbModule,
     HttpClientModule,
@@ -37,9 +59,19 @@ import { TribunalService } from '../../services/tribunal.service';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-  ], 
+  ],
 
-providers :[TribunalService]
+  providers: [
+    UtilisateurService,
+    RoleService,
+    AppService,
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    TribunalService,
+     PhaseService,
+    LoginComponent
+
+  ]
+
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }
