@@ -14,6 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { PhaseService } from '../../services/phase.service';
 import { UtilisateurService } from '../../services/utilisateur.service';
 import { RoleService } from '../../services/role.service';
 import { LoginComponent } from '../../login/login.component';
@@ -31,6 +32,11 @@ export class XhrInterceptor implements HttpInterceptor {
   }
 }
 
+import { HttpClientModule } from '@angular/common/http';
+import { TribunalService } from '../../services/tribunal.service';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -39,6 +45,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ReactiveFormsModule,
     ChartsModule,
     NgbModule,
+    HttpClientModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -50,14 +57,19 @@ export class XhrInterceptor implements HttpInterceptor {
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    LoginComponent,
   ],
+
   providers: [
     UtilisateurService,
     RoleService,
     AppService,
     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
+    TribunalService,
+     PhaseService,
+    LoginComponent
+
   ]
+
 })
 
 export class AdminLayoutModule { }
