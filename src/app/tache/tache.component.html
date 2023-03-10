@@ -28,18 +28,18 @@
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label>Case</label>
-                                    <select class="form-control form-control-alternative" multiple name="affaires"
-                                        [(ngModel)]="tache.affaires">
-                                        <option *ngFor="let a of affaires" [ngValue]="a">{{a.titre}}</option>
+                                    <select class="form-control form-control-alternative" multiple name="affaireFK"
+                                        [(ngModel)]="tache.affaireFK">
+                                        <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label>Court</label>
-                                    <select class="form-control form-control-alternative" multiple name="tribunaux"
-                                        [(ngModel)]="tache.tribunals">
-                                        <option *ngFor="let tr of tribunaux" [ngValue]="tr">{{tr.adresse}}</option>
+                                    <select class="form-control form-control-alternative" multiple name="tribunalFK"
+                                        [(ngModel)]="tache.tribunalFK">
+                                        <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-round btn-danger">Add</button>
+                            <button class="btn btn-round btn-info">Add</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -83,14 +83,14 @@
                             <td>{{t.titre}}</td>
                             <td>{{t.dateCreation}}</td>
                             <td>{{t.description}}</td>
-                            <td>{{t.tribunal}}</td>
-                            <td>{{t.affaire}}</td>
+                            <td>{{t.tribunalFK.adresse}}</td>
+                            <td>{{t.affaireFK.titre}}</td>
                             <td>{{t.statutAudience}}</td>
-                            <td *ngIf="t.phase">{{t.phase}}</td>
+                            <td>{{t.phase}}</td>
                             <td>
-                                <button class="btn btn-round btn-outline-danger"
-                                    (click)="deleteTache(p.idTache)">Delete</button>
-                                <button class="btn btn-round btn-info" (click)="editTache(p)">Edit</button>
+                                <button class="btn btn-round btn-danger"
+                                    (click)="deleteTache(t.idTache)">Delete</button>
+                                <button class="btn btn-round btn-info" (click)="editTache(t)">Edit</button>
                             </td>
                         </tr>
                     </tbody>

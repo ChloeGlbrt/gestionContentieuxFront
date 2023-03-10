@@ -1,1 +1,65 @@
-<p>edit-tache works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Update Task</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form [formGroup]="editForm">
+                        <div class="row">
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
+                                        placeholder="Title" formControlName="titre">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" [(ngModel)]="tache.description" name="description"
+                                        class="form-control" placeholder="Description" formControlName="description">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Case</label>
+                                    <select class="form-control form-control-alternative" multiple name="affaireFK"
+                                        [(ngModel)]="tache.affaireFK">
+                                        <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Court</label>
+                                    <select class="form-control form-control-alternative" multiple name="tribunalFK"
+                                        [(ngModel)]="tache.tribunalFK">
+                                        <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Phase</label>
+                                    <select class="form-control form-control-alternative" multiple name="phases"
+                                        [(ngModel)]="tache.phases">
+                                        <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-round btn-info" (click)="updateTache()">Update</button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
