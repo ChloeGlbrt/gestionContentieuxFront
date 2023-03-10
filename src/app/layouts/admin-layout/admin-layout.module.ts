@@ -21,6 +21,11 @@ import { LoginComponent } from '../../login/login.component';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppService } from '../../app.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TribunalService } from '../../services/tribunal.service';
+import { AffaireService } from '../../services/affaire.service';
+import { DocumentService } from '../../services/document.service';
+import { TacheService } from '../../services/tache.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -31,14 +36,6 @@ export class XhrInterceptor implements HttpInterceptor {
     return next.handle(xhr);
   }
 }
-
-import { HttpClientModule } from '@angular/common/http';
-import { TribunalService } from '../../services/tribunal.service';
-import { AffaireService } from '../../services/affaire.service';
-import { DocumentService } from '../../services/document.service';
-import { TacheService } from '../../services/tache.service';
-
-
 
 
 @NgModule({
@@ -74,7 +71,7 @@ import { TacheService } from '../../services/tache.service';
      AffaireService,
      DocumentService,
     LoginComponent,
-    TacheService
+    TacheService,
 
 
   ]

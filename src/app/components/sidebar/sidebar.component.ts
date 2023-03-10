@@ -24,7 +24,6 @@ export const ROUTES: RouteInfo[] = [
   { path: '/role', title: 'Role', icon: 'users_single-02', class: '' },
   { path: '/utilisateur', title: 'Users', icon: 'users_circle-08', class: '' },
   { path: '/tribunaux', title: 'Court', icon: 'business_bank', class: '' },
-  { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: '' },
   { path: '/affaires', title: 'Affaires', icon: 'business_briefcase-24', class: '' },
   { path: '/documents', title: 'Documents', icon: 'education_agenda-bookmark', class: '' },
   { path: '/tache', title: 'Tasks', icon: 'business_bank', class: '' },
