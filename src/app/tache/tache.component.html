@@ -1,40 +1,52 @@
+<style>
+    textarea {
+        border-radius: 10%;
+        border-color: dimgray;
+    }
+</style>
 <div class="panel-header panel-header-sm">
 </div>
-<div class="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">Create Task</h5>
-                </div>
-                <div class="card-body">
-                    <!--Formulaire d'ajout début-->
-                    <form (ngSubmit)="saveTache()">
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
-                                        placeholder="Title">
+<div [hidden]="!authenticated()">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Create Task</h5>
+                    </div>
+                    <div class="card-body">
+                        <!--Formulaire d'ajout début-->
+                        <form (ngSubmit)="saveTache()">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Title</b></label>
+                                        <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
+                                            placeholder="Title">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" [(ngModel)]="tache.description" name="description"
-                                        class="form-control" placeholder="Description">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Description</b></label>
+                                        <textarea [(ngModel)]="tache.description" name="description"
+                                            class="form-control" rows="5" cols="33">
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label><b>Creation date</b></label>
                                     <input type="date" [(ngModel)]="tache.dateCreation" name="dateCreation"
                                         class="form-control" placeholder="dateCreation">
                                 </div>
                             </div>
                            <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Case</label>
+                                    <label><b>Case</b></label>
                                     <select class="form-control form-control-alternative" name="affaireFK"
                                         [(ngModel)]="tache.affaireFK">
                                         <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.reference}}</option>
@@ -43,7 +55,7 @@
                             </div>
                         <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Court</label>
+                                    <label><b>Court</b></label>
                                     <select class="form-control form-control-alternative" name="tribunalFK"
                                         [(ngModel)]="tache.tribunalFK">
                                         <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
@@ -63,7 +75,7 @@
                             </div>
  <!--                        <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Phase</label>
+                                    <label><b>Phase</b></label>
                                     <select class="form-control form-control-alternative" multiple name="phases"
                                         [(ngModel)]="tache.phases">
                                         <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
@@ -72,7 +84,7 @@
                             </div>
 -->                       </div>
                         <div>
-                            <button class="btn btn-round btn-danger" >Add</button>
+                            <button class="btn btn-round btn-danger"><b>Add</b></button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -109,15 +121,15 @@
                             <td>{{t.statutAudience}}</td>
   <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
                             <td>
-                                <button class="btn btn-round btn-outline-danger"
-                                    (click)="deleteTache(t.idTache)">Delete</button>
-                                <button class="btn btn-round btn-info" (click)="editTache(t)">Edit</button>
+                                    <button class="btn btn-round btn-danger"
+                                        (click)="deleteTache(t.idTache)"><b>Delete</b></button>
+                                    <button class="btn btn-round btn-info" (click)="editTache(t)"><b>Edit</b></button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <!--Table d'affichage des données fin-->
     </div>
-    <!--Table d'affichage des données fin-->
 </div>

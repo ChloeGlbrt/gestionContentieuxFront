@@ -1,124 +1,137 @@
 <div class="panel-header panel-header-sm">
 </div>
-<div class="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">Create User Profile</h5>
-                </div>
-                <div class="card-body">
-                    <!--Formulaire d'ajout début-->
-                    <form (ngSubmit)="saveUtilisateur()">
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Firstname</label>
-                                    <input type="text" class="form-control" placeholder="Your firstname"
-                                        [(ngModel)]="utilisateur.nomUtilisateur" name="nomUtilisateur">
+<div [hidden]="!authenticated()">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Create User Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <!--Formulaire d'ajout début-->
+                        <form (ngSubmit)="saveUtilisateur()">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Firstname</b></label>
+                                        <input type="text" class="form-control" placeholder="Your firstname"
+                                            [(ngModel)]="utilisateur.nomUtilisateur" name="nomUtilisateur">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label><b>Lastname</b></label>
+                                        <input type="text" class="form-control" placeholder="Your lastname"
+                                            [(ngModel)]="utilisateur.prenomUtilisateur" name="prenomUtilisateur">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="email"><b>Email</b></label>
+                                        <input name="email" id="email" type="email" class="form-control"
+                                            placeholder="Your email" [(ngModel)]="utilisateur.email" name="email">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
-                                <div class="form-group">
-                                    <label>Lastname</label>
-                                    <input type="text" class="form-control" placeholder="Your lastname"
-                                        [(ngModel)]="utilisateur.prenomUtilisateur" name="prenomUtilisateur">
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Username</b></label>
+                                        <input type="text" class="form-control" placeholder="Your username"
+                                            [(ngModel)]="utilisateur.username" name="username">
+                                    </div>
+                                </div>
+                                <div class=" col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label><b>Password</b></label>
+                                        <input type="password" class="form-control" placeholder="Your password"
+                                            [(ngModel)]="utilisateur.password" name="password">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label for="email">Email address</label>
-                                    <input name="email" id="email" type="email" class="form-control"
-                                        placeholder="Your email" [(ngModel)]="utilisateur.email" name="email">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Status</b></label>
+                                        <select class="form-control form-control-alternative"
+                                            [(ngModel)]="utilisateur.statutCompte" name="statutCompte">
+                                            <option value="false">Désactivé</option>
+                                            <option value="true">Activé</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" placeholder="Your username"
-                                        [(ngModel)]="utilisateur.username" name="username">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Role</b></label>
+                                        <select class="form-control form-control-alternative" multiple name="roles"
+                                            [(ngModel)]="utilisateur.roles">
+                                            <option *ngFor="let r of roles" [ngValue]="r">{{r.libelle}}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class=" col-md-6 pl-1">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Your password"
-                                        [(ngModel)]="utilisateur.password" name="password">
-                                </div>
+                            <div>
+                                <button class="btn btn-round btn-danger"><b>Add</b></button>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Statut</label>
-                                    <select class="form-control form-control-alternative"
-                                        [(ngModel)]="utilisateur.statutCompte" name="statutCompte">
-                                        <option value="false">Désactivé</option>
-                                        <option value="true">Activé</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <select class="form-control form-control-alternative" multiple name="roles"
-                                        [(ngModel)]="utilisateur.roles">
-                                        <option *ngFor="let r of roles" [ngValue]="r">{{r.libelle}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-round btn-danger">Add</button>
-                        </div>
-                    </form>
-                    <!--Formulaire d'ajout fin-->
+                        </form>
+                        <!--Formulaire d'ajout fin-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--Table d'affichage des données début-->
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table text-center">
-                    <thead class=" text-primary">
-                        <tr>
-                            <th>Lastname</th>
-                            <th>Firstname</th>
-                            <th>Email</th>
-                            <th>Username </th>
-                            <th>Password</th>
-                            <th>Status</th>
-                            <th>Role</th>
-                            <th>Action </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let u of users">
-                            <td>{{u.nomUtilisateur}}</td>
-                            <td>{{u.prenomUtilisateur}}</td>
-                            <td>{{u.email}}</td>
-                            <td>{{u.username}}</td>
-                            <td>{{u.password}}</td>
-                            <td>{{convertStatutToString(u.statutCompte)}}</td>
-                            <td>
-                                <p *ngFor="let r of u.roles">{{r.libelle}}</p>
-                            </td>
-                            <td>
-                                <button class="btn btn-round btn-outline-danger"
-                                    (click)="deleteUtilisateur(u.idUtilisateur)">Delete</button>
-                                <button class="btn btn-round btn-info" (click)="editUtilisateur(u)">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+        <!--Table d'affichage des données début-->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th>Lastname</th>
+                                <th>Firstname</th>
+                                <th>Email</th>
+                                <th>Username </th>
+                                <th>Password</th>
+                                <th>Status</th>
+                                <th>Role</th>
+                                <th>Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of users">
+                                <td>{{u.nomUtilisateur}}</td>
+                                <td>{{u.prenomUtilisateur}}</td>
+                                <td>{{u.email}}</td>
+                                <td>{{u.username}}</td>
+                                <td>{{u.password}}</td>
+                                <td>{{convertStatutToString(u.statutCompte)}}</td>
+                                <td>
+                                    <p *ngFor="let r of u.roles">{{r.libelle}}</p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-round btn-danger"
+                                        (click)="deleteUtilisateur(u.idUtilisateur)"><b>Delete</b></button>
+                                    <button class="btn btn-round btn-info"
+                                        (click)="editUtilisateur(u)"><b>Edit</b></button>
+                                    <!--
+                                <button class="btn btn-round btn-danger"
+                                    (click)="setAccountStatusFalse()"><b>Disable</b></button>
+                                <button class="btn btn-round btn-danger"
+                                    (click)="updateAccountStatus()"><b>Enable</b></button>
+                                <button class="btn btn-round btn-danger" (click)="setAccountStatusTrue()">Update
+                                    account</button>
+                                -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
+        <!--Table d'affichage des données fin-->
     </div>
-    <!--Table d'affichage des données fin-->
 </div>

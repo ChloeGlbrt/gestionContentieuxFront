@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
+import { AppService } from '../app.service';
 import { Tache } from '../models/tache';
 import { AffaireService } from '../services/affaire.service';
 import { PhaseService } from '../services/phase.service';
@@ -28,7 +29,7 @@ export class TacheComponent implements OnInit {
   tribunal : Tribunal = new Tribunal();
   phase : Phase =new Phase();
 
-  constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService) { }
+  constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private appService: AppService) { }
 
   ngOnInit(): void {
     this.findAllTache();
@@ -64,7 +65,6 @@ export class TacheComponent implements OnInit {
   this.tribunal.taches = this.tache;
   this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache() ;})}
 
-
   deleteTache(id: number) {
     this.tacheService.delete(id).subscribe(() => { this.findAllTache() });
   }
@@ -74,8 +74,44 @@ export class TacheComponent implements OnInit {
     this.router.navigate(['/editTache', tache.idTache]);
   }
 
-
   findAllTribunal() { this.tribunalService.findAll().subscribe(data => { this.tribunalFK = data }); }
   findAllPhase() { this.phaseService.findAll().subscribe(data => { this.phases = data }); }
   findAllAffaire() { this.affaireService.findAll().subscribe(data => { this.affaireFK = data }); }
+
+  authenticated() {
+    return this.appService.authenticated;
+  }
+  // Gestion des profils :
+  authorities() {
+    if (this.appService.isAdmin) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities2() {
+    if (this.appService.isAvocat == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities3() {
+    if (this.appService.isResponsable == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities4() {
+    if (this.appService.isNothing == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logout() {
+    this.appService.logout();
+  }
 }

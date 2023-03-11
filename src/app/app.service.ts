@@ -56,7 +56,8 @@ export class AppService {
       // Récupération des données de l'utilisateur connecté step 2
       this.idUser = this.responseAll['idUtilisateur'];
 
-      if (this.responseAll['username']) {
+      if (this.responseAll['username'] && this.responseAll['statutCompte']) {
+        console.log("statutCompte=" + this.responseAll['statutCompte']);
         this.authenticated = true;
 
         // vérification des profils :

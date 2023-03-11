@@ -71,8 +71,27 @@ export class UtilisateurComponent {
         return 'Désactivé';
       case true:
         return 'Activé';
+      default:
+        return 'Inconnue';
     }
   }
+  /*
+    updateAccountStatus(data) {
+      if (data.statutCompte === true) {
+        this.utilisateur.statutCompte = true;
+      } else {
+        this.utilisateur.statutCompte = false;
+      }
+    }
+  
+    setAccountStatusTrue(data) {
+      this.utilisateur.statutCompte = true;
+    }
+  
+    setAccountStatusFalse(data) {
+      this.utilisateur.statutCompte = false;
+    }
+    */
 
   authenticated() {
     return this.appService.authenticated;
@@ -94,6 +113,13 @@ export class UtilisateurComponent {
   }
   authorities3() {
     if (this.appService.isResponsable == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities4() {
+    if (this.appService.isNothing == true) {
       return false;
     } else {
       return true;

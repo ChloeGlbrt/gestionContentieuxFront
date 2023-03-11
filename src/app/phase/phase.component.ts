@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
+import { AppService } from '../app.service';
 import { Phase } from '../models/phase';
 import { Tache } from '../models/tache';
 import { AffaireService } from '../services/affaire.service';
@@ -19,7 +20,9 @@ export class PhaseComponent implements OnInit {
   phase: Phase = new Phase();
   tache:Tache =new Tache();
 
-  constructor(private phaseService: PhaseService,private tacheService: TacheService, private affaireService : AffaireService, private router: Router) { }
+
+  constructor(private phaseService: PhaseService,private tacheService: TacheService, private affaireService : AffaireService, private router: Router, private appService: AppService) { }
+
 
   ngOnInit(): void {
     this.findAllPhase();
@@ -50,4 +53,44 @@ export class PhaseComponent implements OnInit {
     localStorage.setItem("editPhaseId", phase.idPhase.toString());
     this.router.navigate(['/editPhase', phase.idPhase]);
   }
+
+  authenticated() {
+    return this.appService.authenticated;
+  }
+  // Gestion des profils :
+  authorities() {
+    if (this.appService.isAdmin) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities2() {
+    if (this.appService.isAvocat == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities3() {
+    if (this.appService.isResponsable == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  authorities4() {
+    if (this.appService.isNothing == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logout() {
+    this.appService.logout();
+  }
 }
+
+
+

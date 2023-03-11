@@ -14,19 +14,19 @@
               <div class="row">
                 <div class="col-md-4 pr-1">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Firstname</label>
+                    <label class="form-control-label" for="input-first-name"><b>Firstname</b></label>
                     <p type="text" class="form-control">{{user.nomUtilisateur}}</p>
                   </div>
                 </div>
                 <div class="col-md-4 px-1">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Lastname</label>
+                    <label class="form-control-label" for="input-last-name"><b>Lastname</b></label>
                     <p type="text" class="form-control">{{user.prenomUtilisateur}}</p>
                   </div>
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Email address</label>
+                    <label class="form-control-label" for="input-email"><b>Email</b></label>
                     <p type="text" class="form-control">{{user.email}}</p>
                   </div>
                 </div>
@@ -34,16 +34,17 @@
               <div class="row">
                 <div class="col-md-6 pr-1">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Username</label>
+                    <label class="form-control-label" for="input-username"><b>Username</b></label>
                     <p type="text" class="form-control">{{user.username}}</p>
                   </div>
                 </div>
               </div>
-            <div>
-              <button (click)="editUtilisateur(user)" class="btn btn-round btn-danger">Edit profile</button>
-            </div>
-          </form>
-          <!--Formulaire d'ajout fin-->
+              <div>
+                <button (click)="editUtilisateur(user)" class="btn btn-round btn-danger"><b>Edit profile</b></button>
+              </div>
+            </form>
+            <!--Formulaire d'ajout fin-->
+          </div>
         </div>
       </div>
     </div>

@@ -1,63 +1,57 @@
 <style>
-    textarea{
+    textarea {
         border-radius: 10%;
         border-color: dimgray;
     }
-    
-    </style>
-
-
-
-
-
+</style>
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
-   <div class="row">
-       <div class="col-md-12">
-           <div class="card">
-               <div class="card-header">
-                   <h5 class="title">Update Case</h5>
-               </div>
-               <div class="card-body">
-                   <!--Formulaire d'ajout début-->
-                   <form [formGroup]="editForm">
-                       <div class="row justify-content-center" >
-                        <div class="col-md-4 px-1">
-                            <div class="form-group">
-                                <label>Date de création</label>
-                                <input type="date" [(ngModel)]="document.dateCreation" name="dateCreation" class="form-control" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Update Case</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form [formGroup]="editForm">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label><b>Creation date</b></label>
+                                    <input type="date" [(ngModel)]="document.dateCreation" name="dateCreation"
+                                        class="form-control" formControlName="dateCreation">
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Name</b></label>
+                                    <input [(ngModel)]="document.nom" name="nom" type="text" class="form-control"
+                                        formControlName="nom">
+                                </div>
                             </div>
                         </div>
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Nom</label>
-                                   <input [(ngModel)]="document.nom" name="nom" type="text" class="form-control" placeholder="Nom">
-                               </div>
-                           </div>
-                          
-                        </div>
                         <div class="row justify-content-center">
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Description</label>
-                                   <textarea [(ngModel)]="document.description" name="description" class="form-control" placeholder="Description de l'affaire"
-                                   rows="5" cols="33">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Description</b></label>
+                                    <textarea [(ngModel)]="document.description" name="description" class="form-control"
+                                        formControlName="description" rows="5" cols="33">
                                    </textarea>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="btn-edit text-center">
-                           <button class="btn btn-danger" (click)="updateDocument()">Update</button>
-                           <a href="/documents" class="btn btn-danger" >Return</a>
-                       </div>
-                   </form>
-                   <!--Formulaire d'ajout fin-->
-               </div>
-           </div>
-       </div>
-   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-edit text-center">
+                            <button class="btn btn-round btn-danger" (click)="updateDocument()"><b>Update</b></button>
+                            <a href="/documents" class="btn btn-round btn-danger"><b>Return</b></a>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
 
-   <!--Table d'affichage des données fin-->
+    <!--Table d'affichage des données fin-->
 </div>
-

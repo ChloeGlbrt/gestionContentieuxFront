@@ -66,6 +66,13 @@ export class RoleComponent {
       return true;
     }
   }
+  authorities4() {
+    if (this.appService.isNothing == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   logout() {
     this.appService.logout();

@@ -19,9 +19,18 @@ export class LoginComponent {
 
   }
 
-  login() {
-    this.appService.authenticate(this.credentials, () => { this.router.navigateByUrl("/accueil") });
+  // Problème pour afficher seconde alert
 
+  login() {
+    this.appService.authenticate(this.credentials, (authenticate) => {
+      if (authenticate = true) {
+        alert('Authentification réussie')
+        console.log(authenticate);
+        this.router.navigateByUrl("/accueil")
+      } else if (authenticate.responseAll.statutCompte !== true) {
+        alert('Votre compte est désactivé, veuillez contacter un administrateur.');
+      }
+    });
   }
 
   authenticated() {
