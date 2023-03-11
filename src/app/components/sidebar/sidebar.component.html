@@ -18,21 +18,12 @@
             </a>
         </li>
         <li routerLinkActive="active" class="nav-item">
-            <a (click)="logout()" class="btn btn-round btn-default text-center">
-                <div class="simple-text nav-item">
+            <a (click)="logout()">
+                <div class="nav-item">
                     Logout
-                    <i class="now-ui-icons"></i>
+                    <i class="now-ui-icons media-1_button-power"></i>
                 </div>
             </a>
         </li>
     </ul>
-
-</div>
-<div>
-    <button *ngIf="authenticated()" (click)="logout()" class="btn btn-sm btn-danger">
-        <div>
-            <i class="ni ni-button-power"></i>
-        </div>
-    </button>
-
 </div>

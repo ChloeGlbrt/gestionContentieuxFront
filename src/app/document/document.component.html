@@ -1,100 +1,93 @@
-
 <style>
-    textarea{
+    textarea {
         border-radius: 10%;
         border-color: dimgray;
     }
-    .btn1{
+
+    .btn1 {
         border-color: white;
     }
-
-    </style>
-
-
-
-
+</style>
 <div class="panel-header panel-header-sm">
 </div>
-<div class="main-content">
-   <div class="row">
-       <div class="col-md-12">
-           <div class="card">
-               <div class="card-header">
-                   <h5 class="title">Document</h5>
-               </div>
-               <div class="card-body">
-                   <!--Formulaire d'ajout début-->
-                   <form (ngSubmit)="saveDocument()">
-                       <div class="row">
-                        <div class="col-md-4 pr-1">
-                            <div class="form-group">
-                                <label>Date de creation</label>
-                                <input type="date" class="form-control"
-                                    [(ngModel)]="document.dateCreation" name="prenomUtilisateur">
-                            </div>
-                        </div>
-                           <div class="col-md-4 px-1">
-                               <div class="form-group">
-                                   <label>Nom</label>
-                                   <input type="text" class="form-control" 
-                                       [(ngModel)]="document.nom" name="nom">
-                               </div>
-                           </div>
-                           
-                           <div class="col-md-6 px-1">
-                            <div class="form-group">
-                                <label>Description</label>
-                               
-                                <textarea [(ngModel)]="document.description" name="description" class="form-control"
-                                rows="5" cols="33">
-
-                                Description...
-                                </textarea>
+<div [hidden]="!authenticated()">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Create document</h5>
+                    </div>
+                    <div class="card-body">
+                        <!--Formulaire d'ajout début-->
+                        <form (ngSubmit)="saveDocument()">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Creation date</b></label>
+                                        <input type="date" class="form-control" [(ngModel)]="document.dateCreation"
+                                            name="prenomUtilisateur">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label><b>Name</b></label>
+                                        <input type="text" class="form-control" [(ngModel)]="document.nom" name="nom">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                       <div>
-                           <button class="btn btn-round btn-danger">Add</button>
-                       </div>
-                   </form>
-                   <!--Formulaire d'ajout fin-->
-               </div>
-           </div>
-       </div>
-   </div>
-   <!--Table d'affichage des données début-->
-   <div class="card">
-       <div class="card-body">
-           <div class="table-responsive">
-               <table class="table">
-                   <thead class=" text-primary">
-                       <tr>
-                            <th>Date de Creation</th>
-                           <th>Nom</th>
-                           <th>Description</th>
-                           <th>Action </th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <tr *ngFor="let d of documents">
-                           <td>{{d.dateCreation}}</td>
-                           <td>{{d.nom}}</td>
-                           <td>{{d.description}}</td>
-                           
-                        
-                           <td>
-                               <button class="btn btn-round btn-outline-danger"
-                                   (click)="deleteDocument(d.idDocument)">Delete</button>
-                               <button class="btn  btn-round btn-info" (click)="editDocument(d)">Edit</button>
-                               <button class="btn1" (click)="createPdf()"><img src="../../assets/img/pdf.png" width="40rem" height="35rem" />
-                               </button>
-                           </td>
-                       </tr>
-                   </tbody>
-               </table>
-           </div>
-       </div>
-   </div>
-   <!--Table d'affichage des données fin-->
+                            <div class="row">
+                                <div class="col-md-6 px-1">
+                                    <div class="form-group">
+                                        <label><b>Description</b></label>
+                                        <textarea [(ngModel)]="document.description" name="description"
+                                            class="form-control" rows="5" cols="33">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-round btn-danger"><b>Add</b></button>
+                            </div>
+                        </form>
+                        <!--Formulaire d'ajout fin-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Table d'affichage des données début-->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th>Creation date</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let d of documents">
+                                <td>{{d.dateCreation}}</td>
+                                <td>{{d.nom}}</td>
+                                <td>{{d.description}}</td>
+                                <td>
+                                    <button class="btn btn-round btn-danger"
+                                        (click)="deleteDocument(d.idDocument)"><b>Delete</b></button>
+                                    <button class="btn  btn-round btn-info"
+                                        (click)="editDocument(d)"><b>Edit</b></button>
+                                    <button class="btn1" (click)="createPdf()"><img src="../../assets/img/pdf.png"
+                                            width="40rem" height="35rem" />
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Table d'affichage des données fin-->
+    </div>
 </div>

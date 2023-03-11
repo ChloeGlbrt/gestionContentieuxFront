@@ -1,50 +1,51 @@
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
-   <div class="row">
-       <div class="col-md-12">
-           <div class="card">
-               <div class="card-header">
-                   <h5 class="title">Update Case</h5>
-               </div>
-               <div class="card-body">
-                   <!--Formulaire d'ajout début-->
-                   <form [formGroup]="editForm">
-                       <div class="row justify-content-center" >
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Reference</label>
-                                   <input [(ngModel)]="affaire.reference" name="reference" type="text" class="form-control" placeholder="Reference">
-                               </div>
-                           </div>
-                           <div class="col-md-4 px-1">
-                               <div class="form-group">
-                                   <label>Titre</label>
-                                   <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control" placeholder=" Titre">
-                               </div>
-                           </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Update Case</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form [formGroup]="editForm">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Reference</b></label>
+                                    <input [(ngModel)]="affaire.reference" name="reference" type="text"
+                                        class="form-control" placeholder="Reference">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label><b>Title</b></label>
+                                    <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control"
+                                        formControlName="titre">
+                                </div>
+                            </div>
                         </div>
                         <div class="row justify-content-center">
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Description</label>
-                                   <textarea [(ngModel)]="affaire.description" name="description" class="form-control" placeholder="Description de l'affaire"
-                                   rows="5" cols="33">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Description</b></label>
+                                    <textarea [(ngModel)]="affaire.description" name="description" class="form-control"
+                                        formControlName="description" rows="5" cols="33">
                                    </textarea>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="btn-edit text-center">
-                           <button class="btn btn-danger" (click)="updateAffaire()">Update</button>
-                           <a href="/affaires" class="btn btn-danger" >Return</a>
-                       </div>
-                   </form>
-                   <!--Formulaire d'ajout fin-->
-               </div>
-           </div>
-       </div>
-   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-edit text-center">
+                            <button class="btn btn-round btn-danger" (click)="updateAffaire()"><b>Update</b></button>
+                            <a href="/affaires" class="btn btn-round btn-danger"><b>Return</b></a>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
+                </div>
+            </div>
+        </div>
+    </div>
 
-   <!--Table d'affichage des données fin-->
+    <!--Table d'affichage des données fin-->
 </div>
-

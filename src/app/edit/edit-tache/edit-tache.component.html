@@ -1,3 +1,9 @@
+<style>
+    textarea {
+        border-radius: 10%;
+        border-color: dimgray;
+    }
+</style>
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
@@ -13,22 +19,27 @@
                         <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Title</label>
+                                    <label><b>Title</b></label>
                                     <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
-                                        placeholder="Title" formControlName="titre">
+                                        formControlName="titre" formControlName="titre">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" [(ngModel)]="tache.description" name="description"
-                                        class="form-control" placeholder="Description" formControlName="description">
+                                    <label><b>Description</b></label>
+                                    <textarea [(ngModel)]="tache.description" name="description"
+                                        formControlName="description" class="form-control" rows="5" cols="33">
+                                        </textarea>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Case</label>
-                                    <select class="form-control form-control-alternative" multiple name="affaireFK"
+                                    <label><b>Case</b></label>
+                                    <select class="form-control form-control-alternative" name="affaireFK"
                                         [(ngModel)]="tache.affaireFK">
                                         <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
                                     </select>
@@ -36,16 +47,18 @@
                             </div>
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Court</label>
-                                    <select class="form-control form-control-alternative" multiple name="tribunalFK"
+                                    <label><b>Court</b></label>
+                                    <select class="form-control form-control-alternative" name="tribunalFK"
                                         [(ngModel)]="tache.tribunalFK">
                                         <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Phase</label>
+                                    <label><b>Phase</b></label>
                                     <select class="form-control form-control-alternative" multiple name="phases"
                                         [(ngModel)]="tache.phases">
                                         <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
@@ -53,8 +66,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <button class="btn btn-round btn-info" (click)="updateTache()">Update</button>
+                        <div class="btn-edit text-center">
+                            <button class="btn btn-round btn-danger" (click)="updateTache()"><b>Update</b></button>
+                            <a href="/tache" class="btn btn-round btn-danger"><b>Return</b></a>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->

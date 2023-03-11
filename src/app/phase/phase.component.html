@@ -1,75 +1,78 @@
 <div class="panel-header panel-header-sm">
 </div>
-<div class="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">Create Phase</h5>
-                </div>
-                <div class="card-body">
-                    <!--Formulaire d'ajout début-->
-                    <form (ngSubmit)="savePhase()">
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" [(ngModel)]="phase.nom" name="nom" class="form-control"
-                                        placeholder="Name">
+<div [hidden]="!authenticated()">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Create Phase</h5>
+                    </div>
+                    <div class="card-body">
+                        <!--Formulaire d'ajout début-->
+                        <form (ngSubmit)="savePhase()">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Name</b></label>
+                                        <input type="text" [(ngModel)]="phase.nom" name="nom" class="form-control"
+                                            placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-date"><b>Start date</b></label>
+                                        <input type="date" [(ngModel)]="phase.dateDebut" name="dateDebut"
+                                            id="input-date" class="form-control form-control-alternative"
+                                            placeholder="Start date">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="input-date"><b>End date</b></label>
+                                        <input type="date" name="dateFin" [(ngModel)]="phase.dateFin"
+                                            class="form-control" placeholder="End date">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-date">Start date</label>
-                                    <input type="date" [(ngModel)]="phase.dateDebut" name="dateDebut" id="input-date"
-                                        class="form-control form-control-alternative" placeholder="Start date">
-                                </div>
+                            <div>
+                                <button class="btn btn-round btn-danger"><b>Add</b></button>
                             </div>
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label for="email">End Date </label>
-                                    <input type="date" name="dateFin" [(ngModel)]="phase.dateFin" class="form-control"
-                                        placeholder="End date">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-round btn-danger">Add</button>
-                        </div>
-                    </form>
-                    <!--Formulaire d'ajout fin-->
+                        </form>
+                        <!--Formulaire d'ajout fin-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--Table d'affichage des données début-->
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class=" text-primary">
-                        <tr>
-                            <th>Name</th>
-                            <th>Start date</th>
-                            <th>End date</th>
-                            <th> Action </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of phases">
-                            <td>{{p.nom}}</td>
-                            <td *ngIf="p.dateDebut">{{p.dateDebut}}</td>
-                            <td *ngIf="p.dateFin">{{p.dateFin}}</td>
-                            <td>
-                                <button class="btn btn-round btn-outline-danger"
-                                    (click)="deletePhase(p.idPhase)">Delete</button>
-                                <button class="btn btn-round btn-info" (click)="editPhase(p)">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!--Table d'affichage des données début-->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th>Name</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of phases">
+                                <td>{{p.nom}}</td>
+                                <td *ngIf="p.dateDebut">{{p.dateDebut}}</td>
+                                <td *ngIf="p.dateFin">{{p.dateFin}}</td>
+                                <td>
+                                    <button class="btn btn-round btn-danger"
+                                        (click)="deletePhase(p.idPhase)"><b>Delete</b></button>
+                                    <button class="btn btn-round btn-info" (click)="editPhase(p)"><b>Edit</b></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        <!--Table d'affichage des données fin-->
     </div>
-    <!--Table d'affichage des données fin-->
 </div>

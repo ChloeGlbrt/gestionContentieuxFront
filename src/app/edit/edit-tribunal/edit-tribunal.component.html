@@ -1,47 +1,50 @@
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
-   <div class="row">
-       <div class="col-md-12">
-           <div class="card">
-               <div class="card-header">
-                   <h5 class="title">Update Court Details</h5>
-               </div>
-               <div class="card-body">
-                   <!--Formulaire d'ajout début-->
-                   <form [formGroup]="editForm">
-                       <div class="row justify-content-center" >
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Adress</label>
-                                   <input [(ngModel)]="tribunal.adresse" name="adresse" type="text" class="form-control" placeholder="Adress">
-                               </div>
-                           </div>
-                           <div class="col-md-4 px-1">
-                               <div class="form-group">
-                                   <label>Fax</label>
-                                   <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control" placeholder="0000000000">
-                               </div>
-                           </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Update Court Details</h5>
+                </div>
+                <div class="card-body">
+                    <!--Formulaire d'ajout début-->
+                    <form [formGroup]="editForm">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Adress</b></label>
+                                    <input [(ngModel)]="tribunal.adresse" name="adresse" type="text"
+                                        class="form-control" formControlName="adresse">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label><b>Fax</b></label>
+                                    <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control"
+                                        formControlName="fax">
+                                </div>
+                            </div>
                         </div>
                         <div class="row justify-content-center">
-                           <div class="col-md-4 pr-1" style="margin-right:100px;">
-                               <div class="form-group">
-                                   <label>Phone number</label>
-                                   <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control"
-                                       placeholder="00-00-00-00-00">
-                               </div>
-                           </div>
-                           <div class="col-md-4 px-1">
-                            <div class="form-group">
-                                <label>Administrative French Region</label>
-                                <input  name="region" type="text" [(ngModel)]="tribunal.region" class="form-control" placeholder=" Region">
+                            <div class="col-md-4 pr-1" style="margin-right:100px;">
+                                <div class="form-group">
+                                    <label><b>Phone number</b></label>
+                                    <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control"
+                                        formControlName="tel">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label><b>Administrative French Region</b></label>
+                                    <input name="region" type="text" [(ngModel)]="tribunal.region" class="form-control"
+                                        formControlName="region">
                                 </div>
                             </div>
                         </div>
                         <div class="btn-edit text-center">
-                            <button class="btn btn-round btn-danger" (click)="updateTribunal()">Update</button>
-                            <a href="/tribunaux" class="btn btn-round btn-danger">Return</a>
+                            <button class="btn btn-round btn-danger" (click)="updateTribunal()"><b>Update</b></button>
+                            <a href="/tribunaux" class="btn btn-round btn-danger"><b>Return</b></a>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
