@@ -12,7 +12,7 @@ export class Affaire {
     statut!: boolean;
 
     documents!: Document[];
-    taches!: Tache[];
+    taches!: Tache;
 
 
 }

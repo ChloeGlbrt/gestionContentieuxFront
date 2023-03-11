@@ -7,6 +7,9 @@ import { AffaireService } from '../services/affaire.service';
 import { PhaseService } from '../services/phase.service';
 import { TacheService } from '../services/tache.service';
 import { TribunalService } from '../services/tribunal.service';
+import {Affaire} from '../models/affaire';
+import { Tribunal } from '../models/tribunal';
+import { Phase } from '../models/phase';
 
 @Component({
   selector: 'app-tache',
@@ -17,10 +20,14 @@ export class TacheComponent implements OnInit {
 
   taches!: any[];
   phases!: any[];
-  tribunalFK!: any;
-  affaireFK!: any;
-  tache: Tache = new Tache();
+  tribunalFK!: any[];
+  affaireFK!: any[];
 
+  //===Save avec clés étrangères==//
+  tache: Tache = new Tache();
+  affaire : Affaire = new Affaire();
+  tribunal : Tribunal = new Tribunal();
+  phase : Phase =new Phase();
 
   constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private appService: AppService) { }
 
@@ -34,6 +41,7 @@ export class TacheComponent implements OnInit {
   findAllTache() {
     this.tacheService.findAll().subscribe(data => { this.taches = data });
   }
+  /*
   saveTache() {
     // if (!this.tache.titre || !this.tache.description || !this.tache.affaireFK || !this.tache.tribunalFK || !this.tache.phases) {
     //  alert("Missing information");
@@ -49,6 +57,13 @@ export class TacheComponent implements OnInit {
       }
     )
   }
+  */
+
+
+ saveTache(){
+  this.affaire.taches = this.tache;
+  this.tribunal.taches = this.tache;
+  this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache() ;})}
 
   deleteTache(id: number) {
     this.tacheService.delete(id).subscribe(() => { this.findAllTache() });

@@ -36,80 +36,98 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label><b>Case</b></label>
-                                        <select class="form-control form-control-alternative" name="affaireFK"
-                                            [(ngModel)]="tache.affaireFK">
-                                            <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label><b>Court</b></label>
-                                        <select class="form-control form-control-alternative" name="tribunalFK"
-                                            [(ngModel)]="tache.tribunalFK">
-                                            <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
-                                        </select>
-                                    </div>
+
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label><b>Creation date</b></label>
+                                    <input type="date" [(ngModel)]="tache.dateCreation" name="dateCreation"
+                                        class="form-control" placeholder="dateCreation">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label><b>Phase</b></label>
-                                        <select class="form-control form-control-alternative" multiple name="phases"
-                                            [(ngModel)]="tache.phases">
-                                            <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
-                                        </select>
-                                    </div>
+                           <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label><b>Case</b></label>
+                                    <select class="form-control form-control-alternative" name="affaireFK"
+                                        [(ngModel)]="tache.affaireFK">
+                                        <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.reference}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div>
-                                <button class="btn btn-round btn-danger"><b>Add</b></button>
+                        <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label><b>Court</b></label>
+                                    <select class="form-control form-control-alternative" name="tribunalFK"
+                                        [(ngModel)]="tache.tribunalFK">
+                                        <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </form>
-                        <!--Formulaire d'ajout fin-->
-                    </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Hearing Status</label>
+                                    <select name="statutAudience" [(ngModel)]="tache.statutAudience"
+                                    class="form-control form-control-alternative">
+                                <option value="true">Finished</option>
+                            <option value="false">Upcoming</option>
+                        </select>
+                                    
+                                </div>
+                            </div>
+ <!--                        <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label><b>Phase</b></label>
+                                    <select class="form-control form-control-alternative" multiple name="phases"
+                                        [(ngModel)]="tache.phases">
+                                        <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
+                                    </select>
+                                </div>
+                            </div>
+-->                       </div>
+                        <div>
+                            <button class="btn btn-round btn-danger"><b>Add</b></button>
+                        </div>
+                    </form>
+                    <!--Formulaire d'ajout fin-->
                 </div>
             </div>
         </div>
-        <!--Table d'affichage des données début-->
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class=" text-primary">
-                            <tr>
-                                <th>Title</th>
-                                <th>Creation date</th>
-                                <th>Description</th>
-                                <th>Court</th>
-                                <th>Case</th>
-                                <th>Case's status</th>
-                                <th>Phases</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let t of taches">
-                                <td>{{t.titre}}</td>
-                                <td>{{t.dateCreation}}</td>
-                                <td>{{t.description}}</td>
-                                <td>{{t.tribunalFK.adresse}}</td>
-                                <td>{{t.affaireFK.titre}}</td>
-                                <td>{{t.statutAudience}}</td>
-                                <td>{{t.phase}}</td>
-                                <td>
+    </div>
+    <!--Table d'affichage des données début-->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>Title</th>
+                            <th>Creation date</th>
+                            <th>Description</th>
+                            <th>Case reference</th>
+                            <th>Case title</th>
+                             <th>Court adress</th>
+                            <th>Hearing status</th>
+                        <!--    <th>Phases</th>-->
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of taches">
+                            <td>{{t.titre}}</td>
+                            <td>{{t.dateCreation}}</td>
+                            <td>{{t.description}}</td>
+                            <td>{{t.affaireFK.reference}}</td>
+                            <td>{{t.affaireFK.titre}}</td>
+                            <td>{{t.tribunalFK.adresse}}</td>
+                            <td>{{t.statutAudience}}</td>
+  <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
+                            <td>
                                     <button class="btn btn-round btn-danger"
                                         (click)="deleteTache(t.idTache)"><b>Delete</b></button>
                                     <button class="btn btn-round btn-info" (click)="editTache(t)"><b>Edit</b></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!--Table d'affichage des données fin-->
