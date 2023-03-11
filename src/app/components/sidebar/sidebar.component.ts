@@ -11,7 +11,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
 
   { path: '/accueil', title: 'Home', icon: 'shopping_shop', class: ''},
-  { path: '/dashboard', title: 'Dashboard', icon: 'design_app', class: '' },
+  //{ path: '/dashboard', title: 'Dashboard', icon: 'design_app', class: '' },
   // { path: '/icons', title: 'Icons',  icon:'education_atom', class: '' },
   // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
   // { path: '/notifications', title: 'Notifications',  icon:'ui-1_bell-53', class: '' },
@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/role', title: 'Role', icon: 'users_single-02', class: '' },
   { path: '/utilisateur', title: 'Users', icon: 'users_circle-08', class: '' },
   { path: '/tribunaux', title: 'Court', icon: 'business_bank', class: '' },
-  { path: '/affaires', title: 'Affaires', icon: 'business_briefcase-24', class: '' },
+  { path: '/affaires', title: 'Cases', icon: 'business_briefcase-24', class: '' },
   { path: '/documents', title: 'Documents', icon: 'education_agenda-bookmark', class: '' },
   { path: '/tache', title: 'Tasks', icon: 'business_bank', class: '' },
 

@@ -27,23 +27,41 @@
                             </div>
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="date" [(ngModel)]="tache.dateCreation" name="dateCreation"
+                                        class="form-control" placeholder="dateCreation">
+                                </div>
+                            </div>
+                           <div class="col-md-4 pr-1">
+                                <div class="form-group">
                                     <label>Case</label>
-                                    <select class="form-control form-control-alternative" multiple name="affaireFK"
+                                    <select class="form-control form-control-alternative" name="affaireFK"
                                         [(ngModel)]="tache.affaireFK">
-                                        <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
+                                        <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.reference}}</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4 pr-1">
+                        <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label>Court</label>
-                                    <select class="form-control form-control-alternative" multiple name="tribunalFK"
+                                    <select class="form-control form-control-alternative" name="tribunalFK"
                                         [(ngModel)]="tache.tribunalFK">
                                         <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Hearing Status</label>
+                                    <select name="statutAudience" [(ngModel)]="tache.statutAudience"
+                                    class="form-control form-control-alternative">
+                                <option value="true">Finished</option>
+                            <option value="false">Upcoming</option>
+                        </select>
+                                    
+                                </div>
+                            </div>
+ <!--                        <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label>Phase</label>
                                     <select class="form-control form-control-alternative" multiple name="phases"
@@ -52,9 +70,9 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+-->                       </div>
                         <div>
-                            <button class="btn btn-round btn-info">Add</button>
+                            <button class="btn btn-round btn-danger" >Add</button>
                         </div>
                     </form>
                     <!--Formulaire d'ajout fin-->
@@ -66,16 +84,18 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table text-center">
                     <thead class=" text-primary">
                         <tr>
                             <th>Title</th>
                             <th>Creation date</th>
                             <th>Description</th>
-                            <th>Court</th>
-                            <th>Case</th>
-                            <th>Case's status</th>
-                            <th>Phases</th>
+                            <th>Case reference</th>
+                            <th>Case title</th>
+                             <th>Court adress</th>
+                            <th>Hearing status</th>
+                        <!--    <th>Phases</th>-->
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,12 +103,13 @@
                             <td>{{t.titre}}</td>
                             <td>{{t.dateCreation}}</td>
                             <td>{{t.description}}</td>
-                            <td>{{t.tribunalFK.adresse}}</td>
+                            <td>{{t.affaireFK.reference}}</td>
                             <td>{{t.affaireFK.titre}}</td>
+                            <td>{{t.tribunalFK.adresse}}</td>
                             <td>{{t.statutAudience}}</td>
-                            <td>{{t.phase}}</td>
+  <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
                             <td>
-                                <button class="btn btn-round btn-danger"
+                                <button class="btn btn-round btn-outline-danger"
                                     (click)="deleteTache(t.idTache)">Delete</button>
                                 <button class="btn btn-round btn-info" (click)="editTache(t)">Edit</button>
                             </td>

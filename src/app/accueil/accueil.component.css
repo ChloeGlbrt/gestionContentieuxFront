@@ -21,7 +21,12 @@
 .button-wrapper {
     margin-top: 20px;
     text-align: center;
+    padding: 0 20px;
 }
+
+.button-wrapper a:first-child {
+    margin-right: 20px;
+  }
 
 .btn-login {
     background-color: rgb(248, 63, 55);
@@ -59,24 +64,43 @@
     background-color: rgb(162, 77, 77);
 }
 
-.card{
-    margin-top: 50px;
-}
 
 .card-header {
     padding-left: 10px;
   }
+
 
 #little-card {
     background-color: white;
     border-radius: 10px;
     height: 400px;
     position: relative;
-  }
-
-#carouselAccueil {
     margin-top: 50px;
-    max-width: 400px;
-    margin-bottom: 50px;  
   }
 
+  .carousel {
+  width: 600px;
+  height: 400px;
+  }
+
+  #big-card {
+    background-color: white;
+    border-radius: 10px;
+    height: 400px;
+    width: 600px;
+  
+  }
+  
+  .big-card-text{
+    margin-top: 50px;
+    font-size: 18px;
+  }
+
+.row-stat{
+    height: 800px;
+    margin-top: 20px;
+}
+
+.mini-card{
+    margin-top: 20px;
+}

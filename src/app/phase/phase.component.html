@@ -1,7 +1,7 @@
 <div class="panel-header panel-header-sm">
 </div>
 <div class="main-content">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -32,6 +32,15 @@
                                         placeholder="End date">
                                 </div>
                             </div>
+                            <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Task</label>
+                                    <select class="form-control form-control-alternative" name="tacheFK"
+                                        [(ngModel)]="phase.tacheFK">
+                                        <option *ngFor="let ta of tacheFK" [ngValue]="ta">{{ta.titre}}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <button class="btn btn-round btn-danger">Add</button>
@@ -46,12 +55,14 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table text-center">
                     <thead class=" text-primary">
                         <tr>
                             <th>Name</th>
                             <th>Start date</th>
                             <th>End date</th>
+                            <th>Task title</th>
+                            <th>Case reference</th>
                             <th> Action </th>
                         </tr>
                     </thead>
@@ -60,6 +71,8 @@
                             <td>{{p.nom}}</td>
                             <td *ngIf="p.dateDebut">{{p.dateDebut}}</td>
                             <td *ngIf="p.dateFin">{{p.dateFin}}</td>
+                             <td>{{p.tacheFK.titre}}</td>
+                             <td>{{p.tacheFK.affaireFK.reference}}</td>
                             <td>
                                 <button class="btn btn-round btn-outline-danger"
                                     (click)="deletePhase(p.idPhase)">Delete</button>

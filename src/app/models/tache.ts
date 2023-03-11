@@ -10,6 +10,7 @@ export class Tache {
     titre!: string;
     description!: string;
     statutAudience!: boolean;
+
     utilisateurFK!: Utilisateur;
     affaireFK!: Affaire;
     tribunalFK!: Tribunal;

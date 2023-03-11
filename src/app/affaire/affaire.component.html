@@ -23,59 +23,59 @@ select{
                 <div class="card-body">
                     <!--Formulaire d'ajout début-->
                     <form (ngSubmit)="saveAffaire()">
-                        <div class="row">
+                        <div class="row justify-content-center">
+
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
                                     <label>Reference</label>
                                     <input type="text" [(ngModel)]="affaire.reference" name="reference"
                                         class="form-control" placeholder="reference">
                                 </div>
-
                             </div>
-                            <div class="col-md-4 pr-1">
+
+                            <div class="col-md-4 pl-1">
                                 <div class="form-group">
                                     <label>Titre</label>
                                     <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control"
                                         placeholder="Titre de l'affaire">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 px-1">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea [(ngModel)]="affaire.description" name="description" class="form-control"
-                                        rows="5" cols="33">
-                                   </textarea>
 
-                               </div>
-                           </div>
-                          
-<div class="row">
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
                                     <label>Statut</label>
-                                    <select class="form-control form-control-alternative" [(ngModel)]="affaire.statut"
-                                        name="statut">
-                                        <option value="0">A venir</option>
-                                        <option value="1">En cours</option>
-                                        <option value="2">Traité</option>
-                                        <option value="3">Archivé</option>
-                                    </select>
+                                        <select class="form-control form-control-alternative" [(ngModel)]="affaire.statut"
+                                            name="statut">
+                                            <option value="0">A venir</option>
+                                            <option value="1">En cours</option>
+                                            <option value="2">Traité</option>
+                                            <option value="3">Archivé</option>
+                                        </select>
                                 </div>
                             </div>
+                        
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea [(ngModel)]="affaire.description" name="description" class="form-control"></textarea>
+                               </div>
+                           </div>
+
+                           <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                    <label for="date">Case Date </label>
+                                    <input type="date" name="dateAffaire" [(ngModel)]="affaire.dateAffaire" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 px-1">
+                                <td>Document</td>
+                                    <td><select class = "form-select form-select-sm" multiple name="documents" [(ngModel)]="affaire.documents">
+                                    <option *ngFor="let d of documents" [ngValue]="d">{{d.nom}}</option>
+                                    </select>
+                            </td>
+                            </div>
                         </div>
-                        <div class="col-md-4 px-1">
-                        <td>Document</td>
-                <td>
-                    <select class = "form-select form-select-sm" multiple name="documents" [(ngModel)]="affaire.documents">
-                        <option *ngFor="let d of documents" [ngValue]="d">
-                            {{d.nom}}
-                        </option>
-                    </select>
-                </td>
-                    </div>
-                      </div>                   
                        
                        <div>
                            <button class="btn btn-round btn-danger" type="submit">Add</button>
@@ -90,7 +90,7 @@ select{
    <div class="card">
        <div class="card-body">
            <div class="table-responsive">
-               <table class="table">
+               <table class="table text-center">
                    <thead class=" text-primary">
                        <tr>
                              <th>Reference</th>
