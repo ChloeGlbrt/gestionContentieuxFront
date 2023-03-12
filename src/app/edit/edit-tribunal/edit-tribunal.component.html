@@ -14,15 +14,13 @@
                             <div class="col-md-4 pr-1" style="margin-right:100px;">
                                 <div class="form-group">
                                     <label><b>Adress</b></label>
-                                    <input [(ngModel)]="tribunal.adresse" name="adresse" type="text"
-                                        class="form-control" formControlName="adresse">
+                                    <input [(ngModel)]="tribunal.adresse" name="adresse" type="text"class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 px-1">
                                 <div class="form-group">
                                     <label><b>Fax</b></label>
-                                    <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control"
-                                        formControlName="fax">
+                                    <input type="text" [(ngModel)]="tribunal.fax" name="fax" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -30,18 +28,19 @@
                             <div class="col-md-4 pr-1" style="margin-right:100px;">
                                 <div class="form-group">
                                     <label><b>Phone number</b></label>
-                                    <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control"
-                                        formControlName="tel">
+                                    <input name="tel" [(ngModel)]="tribunal.tel" type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
+                           <div class="col-md-4 px-1">
                                 <div class="form-group">
-                                    <label><b>Administrative French Region</b></label>
-                                    <input name="region" type="text" [(ngModel)]="tribunal.region" class="form-control"
-                                        formControlName="region">
+                                    <label><b>Administrative Region</b></label>
+                              <!--      <input  name="region" type="text" [(ngModel)]="tribunal.region" class="form-control"> -->
+                                    <select [(ngModel)]="tribunal.region" class="form-control" name="region">
+                                            <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+                                        </select>
                                 </div>
                             </div>
-                        </div>
+                            </div>
                         <div class="btn-edit text-center">
                             <button class="btn btn-round btn-danger" (click)="updateTribunal()"><b>Update</b></button>
                             <a href="/tribunaux" class="btn btn-round btn-danger"><b>Return</b></a>

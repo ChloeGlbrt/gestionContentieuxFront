@@ -27,6 +27,8 @@ import { AffaireService } from '../../services/affaire.service';
 import { DocumentService } from '../../services/document.service';
 import { TacheService } from '../../services/tache.service';
 
+
+
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -67,12 +69,11 @@ export class XhrInterceptor implements HttpInterceptor {
     AppService,
     { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
     TribunalService,
-     PhaseService,
-     AffaireService,
-     DocumentService,
+    PhaseService,
+    AffaireService,
+    DocumentService,
     LoginComponent,
     TacheService,
-
 
   ]
 

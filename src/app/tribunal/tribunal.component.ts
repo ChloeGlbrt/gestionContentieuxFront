@@ -15,6 +15,8 @@ export class TribunalComponent implements OnInit {
   tribunaux!: any[];
   taches!: any[];
 
+  //==Régions de France car usage Cabinets France===//
+
   regions: string[] = [
     'Auvergne-Rhône-Alpes',
     'Bourgogne-Franche-Comté', 'Bretagne',
@@ -40,10 +42,6 @@ export class TribunalComponent implements OnInit {
 
   findAll() { this.tribunalService.findAll().subscribe(data => { this.tribunaux = data }); }
 
-  // save() {this.tribunalService.save(this.tribunal).subscribe(() => {this.findAll(); this.tribunal = new Tribunal()});}
-
-
-
   delete(id: number) { this.tribunalService.delete(id).subscribe(() => { this.findAll() }); }
 
   editTribunal(tribunal: Tribunal) {
@@ -60,12 +58,9 @@ export class TribunalComponent implements OnInit {
     return faxNumberWithDashes.replace(/-/g, '');
   }
 
-
   save() {
-    // Convert the phone number to a format without dashes
     const phoneNumberWithoutDashes = this.convertPhoneNumber(this.tribunal.tel);
     const faxNumberWithoutDashes = this.convertFaxNumber(this.tribunal.fax)
-    // Save the data with the phone number without dashes
     this.tribunal.tel = phoneNumberWithoutDashes;
     this.tribunal.fax = faxNumberWithoutDashes;
     this.tribunalService.save(this.tribunal).subscribe(() => {
@@ -73,6 +68,8 @@ export class TribunalComponent implements OnInit {
       this.tribunal = new Tribunal();
     });
   }
+
+  
   authenticated() {
     return this.appService.authenticated;
   }

@@ -17,62 +17,61 @@
                     <div class="card-body">
                         <!--Formulaire d'ajout début-->
                         <form (ngSubmit)="saveTache()">
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
+                        <div class="row justify-content-center">
+                                <div class="col-md-5 pr-1">
                                     <div class="form-group">
                                         <label><b>Title</b></label>
-                                        <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
+                                        <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control form-control-alternative"
                                             placeholder="Title">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
+                                <div class="col-md-5 pr-1">
                                     <div class="form-group">
-                                        <label><b>Description</b></label>
-                                        <textarea [(ngModel)]="tache.description" name="description"
-                                            class="form-control" rows="5" cols="33">
-                                        </textarea>
+                                        <label><b>Creation date</b></label>
+                                        <div type="text" class="form-control form-control-alternative" readonly>{{currentDate}}</div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label><b>Creation date</b></label>
-                                    <input type="date" [(ngModel)]="tache.dateCreation" name="dateCreation"
-                                        class="form-control" placeholder="dateCreation">
-                                </div>
-                            </div>
-                           <div class="col-md-4 pr-1">
+                                </div>                                
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 pr-1">
                                 <div class="form-group">
                                     <label><b>Case</b></label>
-                                    <select class="form-control form-control-alternative" name="affaireFK"
-                                        [(ngModel)]="tache.affaireFK">
+                                        <select class="form-control form-control-alternative" name="affaireFK"
+                                         [(ngModel)]="tache.affaireFK">
                                         <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.reference}}</option>
-                                    </select>
+                                        </select>
                                 </div>
                             </div>
-                        <div class="col-md-4 pr-1">
+                            <div class="col-md-5 pr-1">
                                 <div class="form-group">
                                     <label><b>Court</b></label>
                                     <select class="form-control form-control-alternative" name="tribunalFK"
-                                        [(ngModel)]="tache.tribunalFK">
-                                        <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
+                                    [(ngModel)]="tache.tribunalFK">
+                                    <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4 pr-1">
+                        </div>
+                        <div class="row justify-content-center">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Description</b></label>
+                                        <textarea [(ngModel)]="tache.description" name="description"
+                                            class="form-control form-control-alternative" rows="5" cols="33">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            <div class="col-md-5 pr-1">
                                 <div class="form-group">
-                                    <label>Hearing Status</label>
+                                    <label><b>Hearing Status</b></label>
                                     <select name="statutAudience" [(ngModel)]="tache.statutAudience"
                                     class="form-control form-control-alternative">
-                                <option value="true">Finished</option>
-                            <option value="false">Upcoming</option>
-                        </select>
-                                    
+                                    <option value="true">Finished</option>
+                                    <option value="false">Upcoming</option>
+                                    </select>  
                                 </div>
                             </div>
+                        </div>
  <!--                        <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label><b>Phase</b></label>
@@ -118,7 +117,7 @@
                             <td>{{t.affaireFK.reference}}</td>
                             <td>{{t.affaireFK.titre}}</td>
                             <td>{{t.tribunalFK.adresse}}</td>
-                            <td>{{t.statutAudience}}</td>
+                            <td>{{t.statutAudience ? 'Finished' : 'Upcoming'}}</td>
   <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
                             <td>
                                     <button class="btn btn-round btn-danger"

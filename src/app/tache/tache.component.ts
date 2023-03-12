@@ -22,6 +22,7 @@ export class TacheComponent implements OnInit {
   phases!: any[];
   tribunalFK!: any[];
   affaireFK!: any[];
+  currentDate!: string;
 
   //===Save avec clés étrangères==//
   tache: Tache = new Tache();
@@ -36,6 +37,10 @@ export class TacheComponent implements OnInit {
     this.findAllPhase();
     this.findAllAffaire();
     this.findAllTribunal();
+
+    //==Afficher la date du jour==//
+    let date = new Date();
+    this.currentDate = date.toLocaleDateString();
   }
 
   findAllTache() {
@@ -63,7 +68,8 @@ export class TacheComponent implements OnInit {
  saveTache(){
   this.affaire.taches = this.tache;
   this.tribunal.taches = this.tache;
-  this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache() ;})}
+  this.tache.dateCreation = new Date(); // ajout de la date actuelle
+  this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache(); alert("Task added successfully");})}
 
   deleteTache(id: number) {
     this.tacheService.delete(id).subscribe(() => { this.findAllTache() });
