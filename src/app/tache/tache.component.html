@@ -13,6 +13,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="title">Create Task</h5>
+                        <p><b>Your account : </b><i style="text-transform: uppercase">{{ user.prenomUtilisateur}} {{ user.nomUtilisateur}}</i></p>
+
                     </div>
                     <div class="card-body">
                         <!--Formulaire d'ajout début-->
@@ -22,7 +24,7 @@
                                     <div class="form-group">
                                         <label><b>Title</b></label>
                                         <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control form-control-alternative"
-                                            placeholder="Title">
+                                             style="text-transform: uppercase">
                                     </div>
                                 </div>
                                 <div class="col-md-5 pr-1">
@@ -105,6 +107,7 @@
                             <th>Case title</th>
                              <th>Court adress</th>
                             <th>Hearing status</th>
+                            <th>Task manager</th>
                         <!--    <th>Phases</th>-->
                             <th>Option</th>
                         </tr>
@@ -119,6 +122,7 @@
                             <td>{{t.tribunalFK.adresse}}</td>
                             <td>{{t.statutAudience ? 'Finished' : 'Upcoming'}}</td>
   <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
+                            <td style="text-transform: uppercase">{{user.nomUtilisateur}} {{user.prenomUtilisateur}}</td>
                             <td>
                                     <button class="btn btn-round btn-danger"
                                         (click)="deleteTache(t.idTache)"><b>Delete</b></button>

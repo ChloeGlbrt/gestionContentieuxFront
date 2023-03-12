@@ -10,6 +10,8 @@ import { TribunalService } from '../services/tribunal.service';
 import {Affaire} from '../models/affaire';
 import { Tribunal } from '../models/tribunal';
 import { Phase } from '../models/phase';
+import { Utilisateur } from '../models/utilisateur';
+import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
   selector: 'app-tache',
@@ -24,27 +26,53 @@ export class TacheComponent implements OnInit {
   affaireFK!: any[];
   currentDate!: string;
 
+  //===Liaison tache avec utilisateur connecté===//
+  seletedUser! : any;
+  user : Utilisateur = new Utilisateur();
+  idUser : any;
+
   //===Save avec clés étrangères==//
   tache: Tache = new Tache();
   affaire : Affaire = new Affaire();
   tribunal : Tribunal = new Tribunal();
   phase : Phase =new Phase();
 
-  constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private appService: AppService) { }
+  constructor(
+    private tacheService: TacheService, 
+    private router: Router, 
+    private phaseService: PhaseService, 
+    private affaireService: AffaireService, 
+    private tribunalService: TribunalService, 
+    private appService: AppService, 
+    private utilisateurService : UtilisateurService) { }
 
   ngOnInit(): void {
     this.findAllTache();
     this.findAllPhase();
     this.findAllAffaire();
     this.findAllTribunal();
+    this.findAllUtilisateur();
 
     //==Afficher la date du jour==//
     let date = new Date();
     this.currentDate = date.toLocaleDateString();
+
+    //===Récupération profil utilisateur dès ouverture page===/
+    this.idUser =this.appService.idUser;
+    this.findProfil(this.idUser);
+  }
+
+   //===Récupération profil utilisateur méthode===//
+   findProfil(id:number){
+    this.utilisateurService.findOne(id).subscribe(data => {this.user =data;})
   }
 
   findAllTache() {
     this.tacheService.findAll().subscribe(data => { this.taches = data });
+  }
+
+  findAllUtilisateur(){
+    this.utilisateurService.findAll().subscribe(data => {this.user = data });
   }
   /*
   saveTache() {
@@ -66,8 +94,10 @@ export class TacheComponent implements OnInit {
 
 
  saveTache(){
-  this.affaire.taches = this.tache;
-  this.tribunal.taches = this.tache;
+  this.tache.utilisateurFK = this.user;//Lien avec utilisateur connecté
+  let idTache = this.tache.idTache;//Lien avec utilisateur connecté
+  this.affaire.taches = this.tache;//Lien avec affaire
+  this.tribunal.taches = this.tache;//Lien avec tribunal
   this.tache.dateCreation = new Date(); // ajout de la date actuelle
   this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache(); alert("Task added successfully");})}
 
