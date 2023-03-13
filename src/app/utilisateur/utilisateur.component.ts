@@ -65,8 +65,18 @@ export class UtilisateurComponent {
 
   }
 
-  convertStatutToString(statutCompte: boolean): string {
-    switch (statutCompte) {
+  updateStatus(utilisateur: any) {
+    utilisateur.enabled = !utilisateur.enabled;
+    var userJson = JSON.stringify(utilisateur);
+    this.utilisateurService.update(userJson).subscribe(
+      () => {
+        this.findAllUtilisateurs();
+      }
+    )
+  }
+
+  convertStatutToString(enabled: boolean): string {
+    switch (enabled) {
       case false:
         return 'Désactivé';
       case true:
@@ -75,21 +85,23 @@ export class UtilisateurComponent {
         return 'Inconnue';
     }
   }
+
+
   /*
-    updateAccountStatus(data) {
-      if (data.statutCompte === true) {
-        this.utilisateur.statutCompte = true;
-      } else {
-        this.utilisateur.statutCompte = false;
-      }
-    }
-  
+   updateAccountStatus(enabled: boolean) {
+     if (this.utilisateur.enabled === true) {
+       this.utilisateur.enabled = false;
+     } else {
+       this.utilisateur.enabled = true;
+     }
+   }
+ 
     setAccountStatusTrue(data) {
-      this.utilisateur.statutCompte = true;
+      this.utilisateur.enabled = true;
     }
   
     setAccountStatusFalse(data) {
-      this.utilisateur.statutCompte = false;
+      this.utilisateur.enabled = false;
     }
     */
 
