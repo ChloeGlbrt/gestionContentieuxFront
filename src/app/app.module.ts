@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -40,6 +41,7 @@ import { EditTacheComponent } from './edit/edit-tache/edit-tache.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FullCalendarModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
@@ -66,9 +68,6 @@ import { EditTacheComponent } from './edit/edit-tache/edit-tache.component';
     EditDocumentComponent,
     PlanningComponent,
     EditTacheComponent,
-
-
-
   ],
   providers: [AffaireService],
   bootstrap: [AppComponent]
