@@ -13,6 +13,7 @@ export class AppService {
   isAvocat = false;
   isResponsable = false;
   isNothing = false;
+  enabled: boolean;
   // Récupération des données de l'utilisateur connecté step 1
   idUser: any;
   constructor(private httpClient: HttpClient) {
@@ -41,6 +42,7 @@ export class AppService {
       this.responseAll = JSON.parse(userData);
       this.idUser = this.responseAll['idUtilisateur'];
     }
+
   }
 
   authenticate(credentials: any, callback: any) {
@@ -56,9 +58,11 @@ export class AppService {
       // Récupération des données de l'utilisateur connecté step 2
       this.idUser = this.responseAll['idUtilisateur'];
 
-      if (this.responseAll['username'] && this.responseAll['statutCompte']) {
-        console.log("statutCompte=" + this.responseAll['statutCompte']);
+      if (this.responseAll['username'] && this.responseAll['enabled']) {
+        console.log("statutCompte=" + this.responseAll['enabled']);
+        this.enabled = this.responseAll['enabled'];
         this.authenticated = true;
+        console.log("authenticated =" + this.authenticated);
 
         // vérification des profils :
         for (let i = 0; i < this.responseAll['roles'].length; i++) {

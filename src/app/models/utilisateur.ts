@@ -8,6 +8,6 @@ export class Utilisateur {
     email!: string;
     username!: string;
     password!: string;
-    statutCompte!: boolean;
+    enabled!: boolean;
     roles!: Role[];
 }

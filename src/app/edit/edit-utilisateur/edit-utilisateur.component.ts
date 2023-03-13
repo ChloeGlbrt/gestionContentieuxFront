@@ -34,7 +34,7 @@ export class EditUtilisateurComponent implements OnInit {
       email: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      statutCompte: ['', Validators.required],
+      enabled: ['', Validators.required],
     })
     this.utilisateurService.findOne(+currentUser).subscribe(data => { this.editForm.setValue(data); })
   }
