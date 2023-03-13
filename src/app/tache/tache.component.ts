@@ -129,13 +129,12 @@ export class TacheComponent implements OnInit {
     let idTache = this.tache.idTache;//Lien avec utilisateur connecté
     this.affaire.taches = this.tache;//Lien avec affaire
     this.tribunal.taches = this.tache;//Lien avec tribunal
-    this.getTache();
     this.tache.dateCreation = new Date(); // ajout de la date actuelle
     if (!this.tache.titre || !this.tache.description || !this.tache.affaireFK || !this.tache.tribunalFK || !this.tache.statutAudience) {
       alert("Missing information");
       return;
     }
-    this.tacheService.save(this.tache).subscribe(() => { this.findAllTache(); this.tache = new Tache(); alert("Task added successfully"); })
+    this.tacheService.save(this.tache).subscribe(() => { this.findAllTache(); this.getTache(); this.tache = new Tache(); alert("Task added successfully"); })
 
   }
 
