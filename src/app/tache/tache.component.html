@@ -16,6 +16,7 @@
                         <p><b>Your account : </b><i style="text-transform: uppercase">{{user.prenomUtilisateur}}
                                 {{user.nomUtilisateur}}</i></p>
 
+
                     </div>
                     <div class="card-body">
                         <!--Formulaire d'ajout début-->
@@ -77,19 +78,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--                        <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label><b>Phase</b></label>
-                                    <select class="form-control form-control-alternative" multiple name="phases"
-                                        [(ngModel)]="tache.phases">
-                                        <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
-                                    </select>
-                                </div>
-                            </div>
--->
+
                             <div>
-                                <button class="btn btn-round btn-danger"><b>Add</b></button>
+                                <button class="btn btn-round btn-info"><b>Add</b></button>
                             </div>
+
                         </form>
                         <!--Formulaire d'ajout fin-->
                     </div>
@@ -110,13 +103,17 @@
                                 <th>Case title</th>
                                 <th>Court adress</th>
                                 <th>Hearing status</th>
+
+                                <th>Phases</th>
                                 <th>Task manager</th>
-                                <!--    <th>Phases</th>-->
+
                                 <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let t of taches">
+
+                            <tr *ngFor="let t of getTachesUtilisateurConnecte()">
+
                                 <td>{{t.titre}}</td>
                                 <td>{{t.dateCreation}}</td>
                                 <td>{{t.description}}</td>
@@ -124,8 +121,13 @@
                                 <td>{{t.affaireFK.titre}}</td>
                                 <td>{{t.tribunalFK.adresse}}</td>
                                 <td>{{t.statutAudience ? 'Finished' : 'Upcoming'}}</td>
-                                <!--                          <td><p *ngFor="let p of t.phase">{{p.nom}}</p></td>-->
-                                <td style="text-transform: uppercase">{{user.nomUtilisateur}} {{user.prenomUtilisateur}}
+
+                                <td>
+                                    <p *ngFor="let p of getPhasesForTache(t)">{{p.nom}}</p>
+                                </td>
+                                <td style="text-transform: uppercase">{{t.utilisateurFK.nomUtilisateur}}
+                                    {{t.utilisateurFK.prenomUtilisateur}}
+
                                 </td>
                                 <td>
                                     <button class="btn btn-round btn-danger"
