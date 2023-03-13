@@ -9,6 +9,7 @@ import * as $ from "jquery";
 import { forkJoin, Observable } from 'rxjs';
 
 
+
 @Component({
   selector: 'app-affaire',
   templateUrl: './affaire.component.html',

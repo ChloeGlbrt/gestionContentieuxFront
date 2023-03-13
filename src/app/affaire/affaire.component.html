@@ -53,50 +53,51 @@
                     <div class="card-body">
                         <!--Formulaire d'ajout début-->
                         <form (ngSubmit)="saveAffaire()">
-                        <div class="row justify-content-center">
+                            <div class="row justify-content-center">
 
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label><b>Reference</b></label>
-                                    <input type="text" [(ngModel)]="affaire.reference" name="reference"
-                                        class="form-control" placeholder="reference">
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label><b>Reference</b></label>
+                                        <input type="text" [(ngModel)]="affaire.reference" name="reference"
+                                            class="form-control" placeholder="reference">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label><b>Title</b></label>
-                                    <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control"
-                                        placeholder="Titre de l'affaire">
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label><b>Title</b></label>
+                                        <input type="text" [(ngModel)]="affaire.titre" name="titre" class="form-control"
+                                            placeholder="Titre de l'affaire">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label><b>Status</b></label>
-                                        <select class="form-control form-control-alternative" [(ngModel)]="affaire.statut"
-                                            name="statut">
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label><b>Status</b></label>
+                                        <select class="form-control form-control-alternative"
+                                            [(ngModel)]="affaire.statut" name="statut">
                                             <option value="0">A venir</option>
                                             <option value="1">En cours</option>
                                             <option value="2">Traité</option>
                                             <option value="3">Archivé</option>
                                         </select>
+                                    </div>
                                 </div>
-                            </div>
-                        
-                            <div class="col-md-4 px-1">
-                                <div class="form-group">
-                                    <label><b>Description</b></label>
-                                    <textarea [(ngModel)]="affaire.description" name="description" class="form-control"></textarea>
-                               </div>
-                           </div>
 
-                           <div class="col-md-4 pl-1">
-                                <div class="form-group">
-                                    <label for="date"><b>Case Date </b></label>
-                                    <input type="date" name="dateAffaire" [(ngModel)]="affaire.dateAffaire" class="form-control">
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label><b>Description</b></label>
+                                        <textarea [(ngModel)]="affaire.description" name="description"
+                                            class="form-control"></textarea>
+                                    </div>
                                 </div>
-                            </div>
+                                                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="date"><b>Case Date </b></label>
+                                        <input type="date" name="dateAffaire" [(ngModel)]="affaire.dateAffaire"
+                                            class="form-control">
+                                    </div>
+                                </div>
 
                             <!-- <div class="col-md-4 px-1">
                                 <td>Document</td>
@@ -141,17 +142,18 @@
                            <td>{{a.description}}</td>
                            <td>{{documentsCount[a.reference] || 0}}</td>    
                            <td>{{convertStatutToString(a.statut)}}</td>
-                           <td>
+
+                                <td>
                                     <button class="btn btn-round btn-danger"
                                         (click)="deleteAffaire(a.idAffaire)"><b>Delete</b></button>
                                     <button class="btn btn-round btn-info" (click)="editAffaire(a)"><b>Edit</b></button>
-                           </td>
-                       </tr>
-                   </tbody>
-               </table>
-           </div>
-       </div>
-   </div>
-   <!--Table d'affichage des données fin-->
-</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Table d'affichage des données fin-->
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Tribunal } from '../models/tribunal';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,13 @@ import { Observable } from 'rxjs';
 export class TacheService {
 
   private BASE_URL = "http://localhost:8080/taches";
-  
+
   constructor(private httpClient: HttpClient) { }
 
   public findAll(): Observable<any> {
     return this.httpClient.get(this.BASE_URL);
   }
-  
+
   public save(tache: any): Observable<any> {
     return this.httpClient.post(this.BASE_URL, tache);
   }

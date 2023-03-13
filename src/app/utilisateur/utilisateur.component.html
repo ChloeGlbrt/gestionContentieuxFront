@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label><b>Status</b></label>
                                         <select class="form-control form-control-alternative"
-                                            [(ngModel)]="utilisateur.statutCompte" name="statutCompte">
+                                            [(ngModel)]="utilisateur.enabled" name="enabled">
                                             <option value="false">Désactivé</option>
                                             <option value="true">Activé</option>
                                         </select>
@@ -107,7 +107,7 @@
                                 <td>{{u.email}}</td>
                                 <td>{{u.username}}</td>
                                 <td>{{u.password}}</td>
-                                <td>{{convertStatutToString(u.statutCompte)}}</td>
+                                <td>{{convertStatutToString(u.enabled)}}</td>
                                 <td>
                                     <p *ngFor="let r of u.roles">{{r.libelle}}</p>
                                 </td>
@@ -116,9 +116,12 @@
                                         (click)="deleteUtilisateur(u.idUtilisateur)"><b>Delete</b></button>
                                     <button class="btn btn-round btn-info"
                                         (click)="editUtilisateur(u)"><b>Edit</b></button>
+
+
+                                    <button [class]="u.enabled ? 'btn btn-round btn-danger' : 'btn btn-round btn-info'"
+                                        (click)="updateStatus(u)"><b>{{ u.enabled ?
+                                            'Disable' : 'Enable' }}</b></button>
                                     <!--
-                                <button class="btn btn-round btn-danger"
-                                    (click)="setAccountStatusFalse()"><b>Disable</b></button>
                                 <button class="btn btn-round btn-danger"
                                     (click)="updateAccountStatus()"><b>Enable</b></button>
                                 <button class="btn btn-round btn-danger" (click)="setAccountStatusTrue()">Update
