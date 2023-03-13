@@ -1,6 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Tribunal } from '../models/tribunal';
+import { Tache } from '../models/tache';
 import { AffaireService } from '../services/affaire.service';
+import { TacheService } from '../services/tache.service';
+import { TribunalService } from '../services/tribunal.service';
+import { Utilisateur } from '../models/utilisateur';
+import { AppService } from '../app.service';
+import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
   selector: 'app-accueil',
@@ -14,9 +21,23 @@ export class AccueilComponent implements OnInit {
   @ViewChild('myChart', {static: true}) myChartRef: ElementRef;
   private myChart: Chart;
 
-  constructor(private affaireService :AffaireService) { }
+  //===Liaison tache avec utilisateur connecté===//
+  seletedUser! : any;
+  user : Utilisateur = new Utilisateur();
+  idUser : any;
+
+  constructor(
+    private affaireService :AffaireService,
+    private tacheService: TacheService,
+    private tribunalService: TribunalService, 
+    private appService: AppService, 
+    private utilisateurService : UtilisateurService) { }
 
   ngOnInit(): void {
+
+    //===Récupération profil utilisateur dès ouverture page===/
+    this.idUser =this.appService.idUser;
+    this.findProfil(this.idUser);
 
   //===Obtenir date du jour===//
   this.getDate();
@@ -25,6 +46,8 @@ export class AccueilComponent implements OnInit {
   this.findAllAffaireEncours();
   this.findAllAffaireTraite();
   this.findAllAffaireArchive();
+  this.findAllTache();
+  this.findAllUtilisateur();
 
   //===Graphique===//  
     this.affaireService.findAll().subscribe(() => {
@@ -101,6 +124,7 @@ EncoursAffairecount! : any;
 TraiteAffairecount! : any;
 ArchiveAffairecount! : any;
 
+
 findAllAffaireAvenir(){
   this.affaireService.findAll().subscribe( data => {
   this.affaires = data;
@@ -126,7 +150,38 @@ findAllAffaireArchive(){
   this.ArchiveAffairecount = ArchiveAffaire.length});}
 
 
-  
+//===Nombre affaires par tribunal===//
+tribunaux!: any[];
+taches! : any[];
+countTachesByTribunal : any;
+RegionTribunalCount : any;
+TacheByTribunal : any ;
 
+
+findAllTribunaux() {
+  this.tribunalService.findAll().subscribe(data => {
+    this.tribunaux = data;
+    let RegionTribunal = this.tribunaux.filter(t => t.region === 'Bretagne');
+    this.RegionTribunalCount = RegionTribunal.length});
+    }
+
+
+
+findAllTache() {
+  this.tribunalService.findAll().subscribe(data =>{
+    this.tribunaux = data ;
+    let TacheByTribunal = this.tribunaux.filter(t => t.taches)
+    this.countTachesByTribunal =  TacheByTribunal.length
+});
+}
+
+//===Récupération profil utilisateur méthode===//
+findProfil(id:number){
+  this.utilisateurService.findOne(id).subscribe(data => {this.user =data;})
+}
+
+findAllUtilisateur(){
+  this.utilisateurService.findAll().subscribe(data => {this.user = data });
+}
 
 }

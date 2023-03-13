@@ -12,7 +12,7 @@
 </div>
 <div [hidden]="!authenticated()">
     <div class="main-content">
-        <div class="row">
+        <div class="row ">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <!--Formulaire d'ajout début-->
                         <form (ngSubmit)="saveDocument()">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
                                         <label><b>Creation date</b></label>
@@ -29,15 +29,15 @@
                                             name="prenomUtilisateur">
                                     </div>
                                 </div>
-                                <div class="col-md-4 px-1">
+                                <div class="col-md-4 pr-1">
                                     <div class="form-group">
                                         <label><b>Name</b></label>
                                         <input type="text" class="form-control" [(ngModel)]="document.nom" name="nom">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 px-1">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 pr-1">
                                     <div class="form-group">
                                         <label><b>Description</b></label>
                                         <textarea [(ngModel)]="document.description" name="description"

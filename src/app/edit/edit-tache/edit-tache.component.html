@@ -20,8 +20,8 @@
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
                                     <label><b>Title</b></label>
-                                    <input type="text" [(ngModel)]="tache.titre" name="titre" class="form-control"
-                                        formControlName="titre" formControlName="titre">
+                                    <input type="text" [(ngModel)]="tache.titre" name="titre" formControlName="titre"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label><b>Case</b></label>
                                     <select class="form-control form-control-alternative" name="affaireFK"
-                                        [(ngModel)]="tache.affaireFK">
+                                        formControlName="affaireFK.titre" [(ngModel)]="tache.affaireFK">
                                         <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.titre}}</option>
                                     </select>
                                 </div>
@@ -49,19 +49,9 @@
                                 <div class="form-group">
                                     <label><b>Court</b></label>
                                     <select class="form-control form-control-alternative" name="tribunalFK"
-                                        [(ngModel)]="tache.tribunalFK">
+                                        formControlName="tribunalFK.adresse" [(ngModel)]="tache.tribunalFK">
                                         <option *ngFor="let tr of tribunalFK" [ngValue]="tr">{{tr.adresse}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                    <label><b>Phase</b></label>
-                                    <select class="form-control form-control-alternative" multiple name="phases"
-                                        [(ngModel)]="tache.phases">
-                                        <option *ngFor="let ph of phases" [ngValue]="ph">{{ph.nom}}</option>
+                                        <!--</option> [selected]="tr.adresse === tache.tribunalFK.adresse"-->
                                     </select>
                                 </div>
                             </div>

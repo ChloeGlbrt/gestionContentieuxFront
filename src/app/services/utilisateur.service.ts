@@ -38,4 +38,11 @@ export class UtilisateurService {
     var utilisateurJSON = JSON.parse(utilisateur); // conversion de string vers format JSON
     return this.httpClient.put(this.BASE_URL + "/" + utilisateurJSON.idUtilisateur, utilisateurJSON);
   }
+
+  // PATCH --> verbe http : PATCH --> URL : BASE_URL/id et dans le body l'objet utilisateur
+  public updateStatus(utilisateur: any): Observable<any> {
+    var utilisateurJSON = JSON.parse(utilisateur); // conversion de string vers format JSON
+    utilisateurJSON.enabled = !utilisateurJSON.enabled;
+    return this.httpClient.patch(this.BASE_URL + "/" + utilisateurJSON.idUtilisateur, utilisateurJSON);
+  }
 }

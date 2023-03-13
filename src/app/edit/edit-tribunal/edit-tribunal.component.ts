@@ -14,7 +14,25 @@ export class EditTribunalComponent implements OnInit {
   editForm! : FormGroup;
 
   tribunal : Tribunal = new Tribunal();
+
+  //===Laisser possiblité à l'utilisateur d'entrer numéro tel et fax avec ou sans tiret===//
   phoneNumberWithDashes: string;
+  faxNumberWithDashes: string;
+
+  //==Régions de France car usage Cabinets FFrance===//
+
+  regions: string[] = [
+    'Auvergne-Rhône-Alpes',
+    'Bourgogne-Franche-Comté', 'Bretagne',
+    'Centre-Val de Loire', 'Corse',
+    'Grand Est',
+    'Hauts-de-France',
+    'Île-de-France',
+    'Normandie', 'Nouvelle-Aquitaine',
+    'Occitanie',
+    'Pays de la Loire',
+    'Provence-Alpes-Côte d\'Azur',
+  ];
 
   constructor(private router:Router, private tribunalService :TribunalService, private formBuilder :FormBuilder) { }
 
@@ -38,26 +56,25 @@ export class EditTribunalComponent implements OnInit {
 
     //Conversion du numéro de téléphone//
     const phoneNumberWithoutDashes = this.convertPhoneNumber(this.phoneNumberWithDashes);
-    
-   }
-   /*MAJ des données*/
+    const faxNumberWithoutDashes = this.convertFaxNumber(this.faxNumberWithDashes);
 
+  
+  }
+   /*MAJ des données*/
    updateTribunal() {
-    // Récupérer la valeur du champ de téléphone
     const phoneNumberWithDashes = this.editForm.value.tel;
     const faxNumberWithDashes = this.editForm.value.fax;
-    // Convertir le numéro de téléphone en format sans tirets
     const phoneNumberWithoutDashes = this.convertPhoneNumber(phoneNumberWithDashes);
     const faxNumberWithoutDashes = this.convertFaxNumber(faxNumberWithDashes);
-    // Mettre à jour les données avec le numéro de téléphone sans tirets
     this.editForm.value.tel = phoneNumberWithoutDashes;
     this.editForm.value.fax = faxNumberWithoutDashes;
     const tribunalJson = JSON.stringify(this.editForm.value);
     this.tribunalService.update(tribunalJson).subscribe(() => {
-      this.router.navigate(['/tribunaux']);
+    this.router.navigate(['/tribunaux']);
     });
   }
 
+  //Conversion du numéro de téléphone et fax//
    public convertPhoneNumber(phoneNumberWithDashes: string): string {
     return phoneNumberWithDashes.replace(/-/g, '');
    }
