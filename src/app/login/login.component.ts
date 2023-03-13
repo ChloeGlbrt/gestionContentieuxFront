@@ -23,7 +23,7 @@ export class LoginComponent {
 
   login() {
     this.appService.authenticate(this.credentials, (authenticate) => {
-      if (authenticate = true) {
+      if (authenticate = true && authenticate) {
         alert('Authentification réussie')
         console.log(authenticate);
         this.router.navigateByUrl("/accueil")
