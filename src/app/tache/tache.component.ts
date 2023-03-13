@@ -7,9 +7,16 @@ import { AffaireService } from '../services/affaire.service';
 import { PhaseService } from '../services/phase.service';
 import { TacheService } from '../services/tache.service';
 import { TribunalService } from '../services/tribunal.service';
-import {Affaire} from '../models/affaire';
+import { Affaire } from '../models/affaire';
 import { Tribunal } from '../models/tribunal';
 import { Phase } from '../models/phase';
+import { CalendarOptions } from '@fullcalendar/core';
+import { EventClickArg } from '@fullcalendar/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list'
+import { Utilisateur } from '../models/utilisateur';
+import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
   selector: 'app-tache',
@@ -22,25 +29,63 @@ export class TacheComponent implements OnInit {
   phases!: any[];
   tribunalFK!: any[];
   affaireFK!: any[];
+  idUser: any;
+  user: Utilisateur = new Utilisateur();
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin, listPlugin],
+    headerToolbar: {
+      left: 'prev,next',
+      center: 'title',
+      right: 'dayGridWeek,dayGridDay,listWeek'
+    },
+    events: [],
+    eventClick: (info: EventClickArg) => {
+      window.alert('Titre: ' + info.event.title + '\nDescription' + info.event.extendedProps.description);
+    }
+  };
 
   //===Save avec clés étrangères==//
   tache: Tache = new Tache();
-  affaire : Affaire = new Affaire();
-  tribunal : Tribunal = new Tribunal();
-  phase : Phase =new Phase();
+  affaire: Affaire = new Affaire();
+  tribunal: Tribunal = new Tribunal();
+  phase: Phase = new Phase();
 
-  constructor(private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private appService: AppService) { }
+  constructor(private modalService: NgbModal, private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private utilisateurService: UtilisateurService, private appService: AppService) { }
 
   ngOnInit(): void {
     this.findAllTache();
     this.findAllPhase();
     this.findAllAffaire();
     this.findAllTribunal();
+    this.getTache();
+    this.idUser = this.appService.idUser;
+    console.log("user profile" + this.idUser);
+    this.findOne(this.idUser);
   }
 
   findAllTache() {
     this.tacheService.findAll().subscribe(data => { this.taches = data });
   }
+  getTache() {
+    this.tacheService.findAll().subscribe(data => {
+      //this.taches = data.filter((tache) => this.appService.idUser === this.idUser);
+      this.taches = data;
+      this.calendarOptions.events = this.taches.map(tache => {
+        return {
+          title: tache.titre,
+          start: new Date(tache.dateCreation),
+          description: tache.description,
+          allDay: true,
+          displayEventTime: false,
+        }
+      })
+    })
+  }
+  /*toPlanning() {
+    this.router.navigate(['/planning']);
+  }*/
+
   /*
   saveTache() {
     // if (!this.tache.titre || !this.tache.description || !this.tache.affaireFK || !this.tache.tribunalFK || !this.tache.phases) {
@@ -58,15 +103,25 @@ export class TacheComponent implements OnInit {
     )
   }
   */
+  findOne(id: number) {
+    this.utilisateurService.findOne(id).subscribe(data => { this.user = data });
+  }
 
-
- saveTache(){
-  this.affaire.taches = this.tache;
-  this.tribunal.taches = this.tache;
-  this.tacheService.save(this.tache).subscribe(()=> {this.findAllTache(); this.tache = new Tache() ;})}
+  saveTache() {
+    this.affaire.taches = this.tache;
+    this.tribunal.taches = this.tache;
+    this.tacheService.save(this.tache).subscribe(() => {
+      this.findAllTache();
+      this.tache = new Tache();
+      this.getTache();
+    })
+  }
 
   deleteTache(id: number) {
-    this.tacheService.delete(id).subscribe(() => { this.findAllTache() });
+    this.tacheService.delete(id).subscribe(() => {
+      this.findAllTache();
+      this.getTache();
+    });
   }
   editTache(tache: Tache) {
     localStorage.removeItem("editTacheId");

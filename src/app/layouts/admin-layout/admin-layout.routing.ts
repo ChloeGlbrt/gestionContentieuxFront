@@ -18,6 +18,7 @@ import { EditAffaireComponent } from '../../edit/edit-affaire/edit-affaire.compo
 import { EditDocumentComponent } from '../../edit/edit-document/edit-document.component';
 import { TacheComponent } from '../../tache/tache.component';
 import { EditTacheComponent } from '../../edit/edit-tache/edit-tache.component';
+import { PlanningComponent } from '../../planning/planning.component';
 
 
 
@@ -39,14 +40,15 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'documents', component: DocumentComponent },
   { path: 'editPhase/:id', component: EditPhaseComponent },
   { path: 'upgrade', component: UpgradeComponent },
-  { path :'editTribunal/:id', component:EditTribunalComponent},
-  { path :'tribunaux', component:TribunalComponent},
-  { path: 'upgrade',        component: UpgradeComponent },
-  { path: 'accueil', component:AccueilComponent},
-  { path: 'editAffaire/:id',    component:EditAffaireComponent },
-  { path: 'editDocument/:id',   component:EditDocumentComponent},
-    { path: 'tache', component: TacheComponent },
+  { path: 'editTribunal/:id', component: EditTribunalComponent },
+  { path: 'tribunaux', component: TribunalComponent },
+  { path: 'upgrade', component: UpgradeComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'editAffaire/:id', component: EditAffaireComponent },
+  { path: 'editDocument/:id', component: EditDocumentComponent },
+  { path: 'tache', component: TacheComponent },
   { path: 'editTache/:id', component: EditTacheComponent },
+  //{ path: 'planning', component: PlanningComponent },
 
 
 ];

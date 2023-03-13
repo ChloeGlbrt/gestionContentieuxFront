@@ -6,6 +6,7 @@ import { AffaireService } from '../services/affaire.service';
 import { DocumentService } from '../services/document.service';
 import { TacheService } from '../services/tache.service';
 
+
 @Component({
   selector: 'app-affaire',
   templateUrl: './affaire.component.html',
