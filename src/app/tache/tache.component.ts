@@ -105,6 +105,9 @@ export class TacheComponent implements OnInit {
           description: tache.description,
           allDay: true,
           displayEventTime: false,
+          backgroundColor: 'red', 
+          borderColor: 'red'
+          
         }
       })
     })
