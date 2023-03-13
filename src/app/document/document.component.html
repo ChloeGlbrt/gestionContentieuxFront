@@ -1,13 +1,4 @@
-<style>
-    textarea {
-        border-radius: 10%;
-        border-color: dimgray;
-    }
 
-    .btn1 {
-        border-color: white;
-    }
-</style>
 <div class="panel-header panel-header-sm">
 </div>
 <div [hidden]="!authenticated()">
@@ -46,7 +37,17 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row justify-content-center">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label><b>Case</b></label>
+                                            <select class="form-control form-control-alternative" name="affaireFK"
+                                             [(ngModel)]="document.affaireFK">
+                                            <option *ngFor="let a of affaireFK" [ngValue]="a">{{a.reference}}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                </div>
                             <div>
                                 <button class="btn btn-round btn-danger"><b>Add</b></button>
                             </div>
@@ -66,6 +67,7 @@
                                 <th>Creation date</th>
                                 <th>Name</th>
                                 <th>Description</th>
+                                <th>Case Reference</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -74,6 +76,7 @@
                                 <td>{{d.dateCreation}}</td>
                                 <td>{{d.nom}}</td>
                                 <td>{{d.description}}</td>
+                                <td>{{d.affaireFK.reference}}</td>
                                 <td>
                                     <button class="btn btn-round btn-danger"
                                         (click)="deleteDocument(d.idDocument)"><b>Delete</b></button>

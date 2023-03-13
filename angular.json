@@ -16,7 +16,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "allowedCommonJsDependencies": ["hammerjs", "chart.js"],
+            "allowedCommonJsDependencies": ["hammerjs", "chart.js", "jquery"],
             "assets": [
               "src/assets",
               "src/favicon.ico"

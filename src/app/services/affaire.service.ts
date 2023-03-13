@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { reference } from '@popperjs/core';
+import { forkJoin, Observable } from 'rxjs';
 import { tap } from 'rxjs/internal/operators/tap';
+import { map, mergeMap } from 'rxjs/operators';
 import { Affaire } from '../models/affaire';
+import { DocumentService } from './document.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,8 @@ export class AffaireService {
   private BASE_URL = "http://localhost:8080/affaires"
 
   public affaires: Affaire[];
-  constructor(private httpClient:HttpClient) { }
+  affaire:Affaire = new Affaire();
+  constructor(private httpClient:HttpClient, private documentService:DocumentService) { }
 
 
   /*public findAll() : Observable<any>
@@ -36,6 +40,9 @@ public findAll(): Observable<any> {
     var affaireJSON = JSON.parse(affaire);
     return this.httpClient.put(this.BASE_URL + "/" + affaireJSON.idAffaire, affaireJSON);
   }
+  public rechercher(reference:string):Observable<any>{
+    return this.httpClient.get(this.BASE_URL+"/"+reference);
+  }
 
 
   //===Pour le graphique===//
@@ -53,5 +60,17 @@ public findAll(): Observable<any> {
     return affairesByMonth;
   }
 
+  // Recuperer nombre de documents //
+    
+  getDocumentsByAffaire(): { [affaireId: number]: number } {
+    const documentsByAffaire = {};
+    this.affaires.forEach(affaire => {
+      this.documentService.getDocumentsByReference(affaire.reference).subscribe(documents => {
+        documentsByAffaire[affaire.idAffaire] = documents.length;
+      });
+    });
+    return documentsByAffaire;
+  }
+  
 
 }
