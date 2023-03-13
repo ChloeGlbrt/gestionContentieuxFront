@@ -8,5 +8,6 @@ export class Tribunal {
     tel! : string;
     region! : string;
     taches! : Tache;
-    
+
+   
 }

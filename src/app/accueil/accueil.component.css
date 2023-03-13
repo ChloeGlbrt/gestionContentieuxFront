@@ -104,3 +104,62 @@
 .mini-card{
     margin-top: 20px;
 }
+
+.tableau{
+    margin-top: 20px;
+}
+
+.promo
+{margin-top: 20px;}
+
+.promo span{
+    
+        animation: blink 1s infinite;
+      }
+      
+      @keyframes blink {
+        0% {
+        color: white;
+        opacity: 0.5;
+        }
+
+        50% {
+            color: rgb(255, 0, 0);
+            opacity: 0.5;
+            }
+
+        100% {
+        color: rgb(255, 0, 0);
+        opacity: 1;
+        }
+ 
+    }
+  
+      
+    .card-text-promo {
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 1px solid rgb(39, 39, 39);
+        font-size: 20px;
+        color: white;
+        animation: typing 2s steps(100, end) infinite;
+        caret-color: transparent; /* masque le curseur */
+      }
+      
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      
+      .card-text-promo:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+
+
+    
+
+

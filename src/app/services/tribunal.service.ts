@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Tribunal } from '../models/tribunal';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,7 @@ export class TribunalService {
     var tribunalJson =JSON.parse(tribunaux);
     return this.httpClient.put(this.BASE_URL +"/" + tribunalJson.idTribunal, tribunalJson);
   }
+
+
 
 }
