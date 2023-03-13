@@ -11,7 +11,7 @@ export class Affaire {
     dateAffaire!: Date;
     statut!: boolean;
 
-    documents!: Document[];
+    documents!: Document;
     taches!: Tache;
 
 

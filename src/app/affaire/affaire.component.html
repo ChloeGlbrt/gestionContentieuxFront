@@ -6,9 +6,45 @@
 </style>
 <div class="panel-header panel-header-sm">
 </div>
+
+<br>
+<br>
 <div [hidden]="!authenticated()">
     <div class="main-content">
+        <div class="container-fluid">
+
         <div class="row">
+
+            <!-- Formulaire de Recherche -->
+            <div class="card-body">
+            <div id="rechercheavancee" class="col-md-12">
+                <form (ngSubmit)="onSubmit()" class="form-group col-md-6">
+                                    
+                    <label for="reference"><b>Reference :</b></label>
+                    <input class="form-control" type="text" name="reference" [(ngModel)]="reference">
+            
+                    <label for="dateAffaire"><b>Date:</b></label>
+                    <input class="form-control" type="date" name="dateAffaire" [(ngModel)]="dateAffaire">
+            
+                    <label for="titre"><b>Title :</b></label>
+                    <input class="form-control" type="text" name="titre" [(ngModel)]="titre">
+                    
+                    <label><b>Status</b></label>
+                                <select class="form-control form-control-alternative" [(ngModel)]="affaire.statut"
+                                    name="statut">
+                                    <option value="0">A venir</option>
+                                    <option value="1">En cours</option>
+                                    <option value="2">Traité</option>
+                                    <option value="3">Archivé</option>
+                                </select>
+            
+                    <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="rechercher()">Rechercher</button>
+              </form>
+                </div>
+                <div>
+                    <input type="button" name="boutonrecherche" class="btn btn-round btn-info" id="boutonrecherche" value="Faire une recherche">
+                </div>
+                </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -62,13 +98,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 px-1">
+                            <!-- <div class="col-md-4 px-1">
                                 <td>Document</td>
                                     <td><select class = "form-select form-select-sm" multiple name="documents" [(ngModel)]="affaire.documents">
                                     <option *ngFor="let d of documents" [ngValue]="d">{{d.nom}}</option>
                                     </select>
                             </td>
-                            </div>
+                            </div> -->
                         </div>
                        
                        <div>
@@ -88,24 +124,23 @@
                    <thead class=" text-primary">
                        <tr>
                              <th>Reference</th>
+                             <th>Date</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Document</th>
-                            <th>Date</th>
                             <th>Status</th>
                            <th>Action</th>
                         
                        </tr>
                    </thead>
                    <tbody>                       
-                       <tr *ngFor="let a of affaires">
+                       <tr *ngFor="let a of affaireRecherche">
                             <td>{{a.reference}}</td>
+                            <td>{{a.dateAffaire}}</td>
                            <td>{{a.titre}}</td>
                            <td>{{a.description}}</td>
-                           <td>{{a.documents}}</td>
-                            <td>{{a.dateAffaire}}</td>
-                            <td>{{convertStatutToString(a.statut)}}</td>
-
+                           <td>{{documentsCount[a.reference] || 0}}</td>    
+                           <td>{{convertStatutToString(a.statut)}}</td>
                            <td>
                                     <button class="btn btn-round btn-danger"
                                         (click)="deleteAffaire(a.idAffaire)"><b>Delete</b></button>

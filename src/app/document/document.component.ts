@@ -6,6 +6,8 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import { map } from 'pdfmake/build/pdfmake';
 import pdffonts from 'pdfmake/build/vfs_fonts';
 import { AppService } from '../app.service';
+import { Affaire } from '../models/affaire';
+import { AffaireService } from '../services/affaire.service';
 pdfMake.vfs = pdffonts.pdfMake.vfs;
 
 
@@ -17,18 +19,28 @@ pdfMake.vfs = pdffonts.pdfMake.vfs;
 export class DocumentComponent implements OnInit {
 
   document: Document = new Document();
-  documents: any[];
+  affaire : Affaire = new Affaire();
 
-  constructor(private documentService: DocumentService, private router: Router, private appService: AppService) { }
+  documents!: any[];
+  affaireFK!:any[];
+
+  constructor(private documentService: DocumentService, private router: Router, private appService: AppService, private affaireService:AffaireService) { }
 
   ngOnInit(): void {
     this.findAllDocument();
+    this.findAllAffaire();
   }
 
   findAllDocument() {
     this.documentService.findAll().subscribe(data => { this.documents = data; });
   }
+
+  findAllAffaire(){
+    this.affaireService.findAll().subscribe(data => { this.affaireFK = data});
+  }
+
   saveDocument() {
+    this.affaire.documents = this.document;
     this.documentService.save(this.document).subscribe(
       () => {
         this.findAllDocument();

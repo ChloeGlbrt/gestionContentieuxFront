@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class DocumentService {
 
-
   private BASE_URL = "http://localhost:8080/documents"
   constructor(private httpClient:HttpClient) { }
 
@@ -27,4 +26,9 @@ export class DocumentService {
     var documentJSON = JSON.parse(document)
     return this.httpClient.put(this.BASE_URL + "/" + documentJSON.idDocument, documentJSON)
   }
+
+  getDocumentsByReference(reference: string): Observable<Document[]> {
+    return this.httpClient.get<Document[]>(`${this.BASE_URL}?reference=${reference}`);
   }
+  
+    }

@@ -5,6 +5,9 @@ import { Affaire } from '../models/affaire';
 import { AffaireService } from '../services/affaire.service';
 import { DocumentService } from '../services/document.service';
 import { TacheService } from '../services/tache.service';
+import * as $ from "jquery";
+import { forkJoin, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-affaire',
@@ -15,16 +18,40 @@ export class AffaireComponent implements OnInit {
 
   affaire: Affaire = new Affaire();
 
+  affaireRecherche:any;
   affaires!: any[];
   documents!: any[];
   taches!: any[];
+  statut:string;
+  idAffaire!: number;
+  reference!: string;
+  titre!: string;
+  dateAffaire!: Date;
+
+  documentsCount: { [reference: string]: number } = {};
+  affaireCount: Affaire[] = [];
 
   constructor(private documentService: DocumentService, private tacheService: TacheService, private affaireService: AffaireService, private router: Router, private appService: AppService) { }
 
 
   ngOnInit(): void {
-    this.findAllAffaire();
-    this.findAllDocument();
+    this.findDocuments();
+    this.reference = '';
+    this.rechercher();
+
+    $(document).ready(function () {
+      $("#rechercheavancee").hide();
+      $("#boutonrecherche").click(function () {
+        $("#rechercheavancee").toggle(1500);
+      });
+    });
+
+
+
+  }
+
+  onSubmit(){
+    this.rechercher();
   }
 
   findAllAffaire() {
@@ -34,7 +61,7 @@ export class AffaireComponent implements OnInit {
   saveAffaire() {
     this.affaireService.save(this.affaire).subscribe(
       () => {
-        this.findAllAffaire();
+        this.rechercher();
         this.affaire = new Affaire();
       }
     )
@@ -43,11 +70,36 @@ export class AffaireComponent implements OnInit {
   deleteAffaire(id: number) {
     this.affaireService.delete(id).subscribe(
       () => {
-        this.findAllAffaire();
+        this.rechercher();
       }
     )
   }
+  rechercher() {
+    if (this.reference == ''){
+      this.affaireService.rechercher(this.reference).subscribe(
+        data => { this.affaireRecherche = data; });
+    } else {
+      this.affaireService.findAll().subscribe( data => {
+        this.affaireRecherche = data.filter(affaire => affaire.reference == this.reference);
+      });
+    }
+   
 
+  }
+ 
+  
+  findDocuments() {
+    this.affaireService.findAll().subscribe(affaires => {
+      this.affaires = affaires;
+      const requests = this.affaires.map(affaire => this.documentService.getDocumentsByReference(affaire.reference));
+      forkJoin(requests).subscribe(results => {
+        results.forEach((documents, index) => {
+          this.documentsCount[this.affaires[index].reference] = documents.length;
+        });
+      });
+    });
+  }
+  
 
   editAffaire(affaire: Affaire) {
     localStorage.removeItem("editAffaireId");
@@ -55,13 +107,6 @@ export class AffaireComponent implements OnInit {
     this.router.navigate(['/editAffaire', affaire.idAffaire]);
   }
 
-  findAllDocument() {
-    this.documentService.findAll().subscribe(data => { this.documents = data });
-  }
-
-  /* findAllTache(){
-     this.tacheService.findAll().subscribe(data => {this.taches = data});
-   }*/
 
   convertStatutToString(statut: number): string {
     switch (statut) {
