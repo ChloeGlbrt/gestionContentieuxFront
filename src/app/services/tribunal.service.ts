@@ -28,7 +28,9 @@ export class TribunalService {
     var tribunalJson =JSON.parse(tribunaux);
     return this.httpClient.put(this.BASE_URL +"/" + tribunalJson.idTribunal, tribunalJson);
   }
-
-
+//==Statistiques===//
+  public findAllparRegion(): Observable<Tribunal[]> {
+    return this.httpClient.get<Tribunal[]>(this.BASE_URL);
+  }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Tache } from '../models/tache';
 import { Tribunal } from '../models/tribunal';
 
 @Injectable({
@@ -29,5 +30,9 @@ export class TacheService {
     var tacheJson = JSON.parse(tache);
     return this.httpClient.put(this.BASE_URL + "/" + tacheJson.idTache, tacheJson);
   }
+//==Statistiques===//
 
+  public findAllparRegion(): Observable<Tache[]> {
+    return this.httpClient.get<Tache[]>(this.BASE_URL);
+  }
 }

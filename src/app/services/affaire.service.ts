@@ -72,5 +72,9 @@ public findAll(): Observable<any> {
     return documentsByAffaire;
   }
   
+  //==Statistiques===//
+  public findAllparRegion(): Observable<Affaire[]> {
+    return this.httpClient.get<Affaire[]>(this.BASE_URL);
+  }
 
 }
