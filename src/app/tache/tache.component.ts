@@ -18,6 +18,7 @@ import listPlugin from '@fullcalendar/list'
 
 import { Utilisateur } from '../models/utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
+import { RoleService } from '../services/role.service';
 
 @Component({
   selector: 'app-tache',
@@ -60,7 +61,7 @@ export class TacheComponent implements OnInit {
   phase: Phase = new Phase();
 
 
-  constructor(private modalService: NgbModal, private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private utilisateurService: UtilisateurService, private appService: AppService) { }
+  constructor(private modalService: NgbModal, private roleService: RoleService, private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private utilisateurService: UtilisateurService, private appService: AppService) { }
 
   ngOnInit(): void {
     this.findAllTache();
@@ -96,8 +97,8 @@ export class TacheComponent implements OnInit {
 
   getTache() {
     this.tacheService.findAll().subscribe(data => {
-      this.taches = data.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur);
-      this.taches = data;
+      this.taches = data.filter((tache) => tache.utilisateurFK.idUtilisateur === this.idUser);
+
       this.calendarOptions.events = this.taches.map(tache => {
         return {
           title: tache.titre,
@@ -107,6 +108,7 @@ export class TacheComponent implements OnInit {
           displayEventTime: false,
           backgroundColor: 'red',
           borderColor: 'red'
+
         }
       })
     })

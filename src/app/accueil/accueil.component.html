@@ -1,3 +1,4 @@
+
 <div class="panel-header panel-header-sm">
   <h1>Modular management for your law firm</h1>
   <h3>Easily manage litigation for each court from your personal space.</h3>
@@ -6,9 +7,8 @@
     <a href="/login">
       <button class="btn-login">Login</button>
     </a>
-    <p><b>Your account : </b><i style="text-transform: uppercase">{{ user.prenomUtilisateur}} {{ user.nomUtilisateur}}</i></p> 
-            
-
+    <p style="font-size: 24px; color: white;"><b>Your account : </b><i style="text-transform: uppercase">{{ user.prenomUtilisateur}} {{ user.nomUtilisateur}}</i></p>
+          
   </div>
 </div>
 
@@ -245,24 +245,24 @@
                     </h5>
                     <div class="card-body" _ngcontent-c7="">
                       <div class="table-responsive" _ngcontent-c7="">
-                        <table class="table" _ngcontent-c7="">
-                          <thead class="text-primary" _ngcontent-c7="">
+                        <table class="table">
+                          <thead class="text-primary">
                             <tr>
-                              <th _ngcontent-c7="">Court</th>
-                              <th class="text-center" _ngcontent-c7="">Cases</th>
+                              <th>Region</th>
+                              <th class="text-center">Number of Courts</th>
+                              <th class="text-center">Number of Tasks</th>
+                              <th class="text-center">Cases</th>
                             </tr>
                           </thead>
-                          <tbody _ngcontent-c7="">
-                            <tr>
-                              <ng-container * ngFor="let r of region">
-                                <td _ngcontent-c7="">{{ RegionTribunalCount }}</td>
-                              </ng-container>
-                              <td class="text-center" _ngcontent-c7="">
-                                {{countTachesByTribunal}}
-                              </td>
+                          <tbody>
+                            <tr *ngFor="let r of region">
+                              <td>{{ r }}</td>
+                              <td class="text-center">{{ RegionTribunalCount[r] || 0 }}</td>
+                              <td class="text-center">{{ TacheByRegion[r] || 0 }}</td>
+                              <td class="text-center">{{AffaireByRegion[r] || 0}}</td>
                             </tr>
                           </tbody>
-                        </table>
+                        </table>                        
                       </div>
                     </div>
                   </div>
@@ -272,5 +272,25 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <script>
+        window.addEventListener('mouseover', initLandbot, { once: true });
+        window.addEventListener('touchstart', initLandbot, { once: true });
+        var myLandbot;
+        function initLandbot() {
+          if (!myLandbot) {
+            var s = document.createElement('script');s.type = 'text/javascript';s.async = true;
+            s.addEventListener('load', function() {
+              myLandbot = new Landbot.Popup({
+                configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1520107-V5YKLLMHQ1HQ1NNS/index.json',
+              });
+            });
+            s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+          }
+        }
+        </script>
     </div>
 

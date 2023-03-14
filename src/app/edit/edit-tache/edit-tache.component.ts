@@ -81,12 +81,46 @@ export class EditTacheComponent implements OnInit {
   findAllPhase() { this.phaseService.findAll().subscribe(data => { this.phases = data }); }
   findAllAffaire() { this.affaireService.findAll().subscribe(data => { this.affaireFK = data }); }
 
+
   updateTache() {
-    this.tache.affaireFK = this.affaire;
-    this.tache.tribunalFK = this.tribunal;
-    var tacheJson = JSON.stringify(this.editForm.value);
-    this.tacheService.update(tacheJson).subscribe(() => { this.routeur.navigate(['/tache']) }); alert("Task updated successfully");
+    // Récupère les objets affaire et tribunal correspondant aux id stockés dans les propriétés de la tâche
+    this.affaireService.findOne(this.tache.affaireFK.idAffaire).subscribe((affaire) => {
+      this.tache.affaireFK = affaire;
+
+      this.tribunalService.findOne(this.tache.tribunalFK.idTribunal).subscribe((tribunal) => {
+        this.tache.tribunalFK = tribunal;
+
+        var tacheJson = JSON.stringify(this.editForm.value);
+        console.log("Tache avant mise à jour: ", this.tache);
+
+        this.tacheService.update(tacheJson).subscribe(() => {
+          console.log("Tache après mise à jour: ", this.tache);
+          this.routeur.navigate(['/tache']);
+          alert("Tâche mise à jour avec succès");
+        });
+      });
+    });
   }
+
+
+
+
+  //pdateTache() {
+
+  // console.log("Affaire: ", this.affaire);
+  // console.log("Tribunal: ", this.tribunal);
+
+  // this.tache.affaireFK = this.affaire;
+  // this.tache.tribunalFK = this.tribunal;
+  // var tacheJson = JSON.stringify(this.editForm.value);
+  // // this.tacheService.update(tacheJson).subscribe(() => { this.routeur.navigate(['/tache']) }); alert("Task updated successfully");
+  // console.log("Tache avant mise à jour: ", this.tache);
+  // this.tacheService.update(tacheJson).subscribe(() => {
+  //   console.log("Tache après mise à jour: ", this.tache);
+  //   this.routeur.navigate(['/tache']);
+  //   alert("Task updated successfully");
+  // });
+}
 
 
 
@@ -104,6 +138,6 @@ export class EditTacheComponent implements OnInit {
 
 
 
-}
+
 
 
