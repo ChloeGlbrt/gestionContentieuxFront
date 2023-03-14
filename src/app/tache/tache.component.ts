@@ -96,7 +96,7 @@ export class TacheComponent implements OnInit {
 
   getTache() {
     this.tacheService.findAll().subscribe(data => {
-      //this.taches = data.filter((tache) => this.appService.idUser === this.idUser);
+      this.taches = data.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur);
       this.taches = data;
       this.calendarOptions.events = this.taches.map(tache => {
         return {
@@ -105,18 +105,18 @@ export class TacheComponent implements OnInit {
           description: tache.description,
           allDay: true,
           displayEventTime: false,
-          backgroundColor: 'red', 
+          backgroundColor: 'red',
           borderColor: 'red'
-          
         }
       })
     })
   }
+
   /*toPlanning() {
     this.router.navigate(['/planning']);
   }*/
 
- 
+
   findOne(id: number) {
     this.utilisateurService.findOne(id).subscribe(data => { this.user = data });
   }
@@ -203,7 +203,7 @@ export class TacheComponent implements OnInit {
   }
 
   getTachesUtilisateurConnecte(): any[] {
-    return this.taches.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur);
+    return this.taches.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur || this.user.roles[0].idRole === 1);
   }
 
 }

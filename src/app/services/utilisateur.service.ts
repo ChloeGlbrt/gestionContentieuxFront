@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Utilisateur } from '../models/utilisateur';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
   private BASE_URL = "http://localhost:8080/utilisateurs";
+  public utilisateurs: Utilisateur[];
+  utilisateur: Utilisateur = new Utilisateur();
 
   // HttpClient = module qui nous permet d'utiliser les verbes http : GET POST PUT DELETE
   constructor(private httpClient: HttpClient) { }
@@ -14,8 +18,14 @@ export class UtilisateurService {
   // findAll --> verbe http GET --> URL : BASE_URL
   // Observable --> une méthode qui vérifie  les données dans le serveur nodejs
   // Afficher la liste des utilisateurs
+  // public findAll(): Observable<any> {
+  //  return this.httpClient.get(this.BASE_URL);
+  // }
+
   public findAll(): Observable<any> {
-    return this.httpClient.get(this.BASE_URL);
+    return this.httpClient.get(this.BASE_URL).pipe(
+      tap((utilisateurs: Utilisateur[]) => this.utilisateurs = utilisateurs)
+    );
   }
 
   // save --> verbe http POST --> URL : BASE_URL + Body
@@ -45,4 +55,9 @@ export class UtilisateurService {
     utilisateurJSON.enabled = !utilisateurJSON.enabled;
     return this.httpClient.patch(this.BASE_URL + "/" + utilisateurJSON.idUtilisateur, utilisateurJSON);
   }
+
+  public rechercher(nomUtilisateur: string): Observable<any> {
+    return this.httpClient.get(this.BASE_URL + "/" + nomUtilisateur);
+  }
+
 }

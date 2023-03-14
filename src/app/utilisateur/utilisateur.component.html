@@ -1,8 +1,25 @@
 <div class="panel-header panel-header-sm">
 </div>
+<br>
+<br>
 <div [hidden]="!authenticated()">
     <div class="main-content">
         <div class="row">
+            <!-- Formulaire de Recherche -->
+            <div class="card-body">
+                <div id="rechercheavancee" class="col-md-12">
+                    <form (ngSubmit)="onSubmit()" class="form-group col-md-6">
+                        <label for="nomUtilisateur"><b>User's name :</b></label>
+                        <input class="form-control" type="text" name="nomUtilisateur" [(ngModel)]="nomUtilisateur">
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                            (click)="rechercher()">Research</button>
+                    </form>
+                </div>
+                <div>
+                    <input type="button" name="boutonrecherche" class="btn btn-round btn-info" id="boutonrecherche"
+                        value="Faire une recherche">
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -82,7 +99,6 @@
                 </div>
             </div>
         </div>
-
         <!--Table d'affichage des données début-->
         <div class="card">
             <div class="card-body">
@@ -90,8 +106,8 @@
                     <table class="table text-center">
                         <thead class=" text-primary">
                             <tr>
-                                <th>Lastname</th>
-                                <th>Firstname</th>
+                                <th>Last name</th>
+                                <th>First name</th>
                                 <th>Email</th>
                                 <th>Username </th>
                                 <th>Password</th>
@@ -101,7 +117,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let u of users">
+                            <tr *ngFor="let u of nomRecherche">
                                 <td>{{u.nomUtilisateur}}</td>
                                 <td>{{u.prenomUtilisateur}}</td>
                                 <td>{{u.email}}</td>
@@ -116,8 +132,6 @@
                                         (click)="deleteUtilisateur(u.idUtilisateur)"><b>Delete</b></button>
                                     <button class="btn btn-round btn-info"
                                         (click)="editUtilisateur(u)"><b>Edit</b></button>
-
-
                                     <button [class]="u.enabled ? 'btn btn-round btn-danger' : 'btn btn-round btn-info'"
                                         (click)="updateStatus(u)"><b>{{ u.enabled ?
                                             'Disable' : 'Enable' }}</b></button>
@@ -132,7 +146,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
         <!--Table d'affichage des données fin-->
