@@ -62,15 +62,15 @@ public findAll(): Observable<any> {
 
   // Recuperer nombre de documents //
     
-  getDocumentsByAffaire(): { [affaireId: number]: number } {
-    const documentsByAffaire = {};
-    this.affaires.forEach(affaire => {
-      this.documentService.getDocumentsByReference(affaire.reference).subscribe(documents => {
-        documentsByAffaire[affaire.idAffaire] = documents.length;
-      });
-    });
-    return documentsByAffaire;
-  }
+  // getDocumentsByAffaire(): { [reference: string]: number } {
+  //   const documentsByAffaire = {};
+  //   this.affaires.forEach(affaire => {
+  //     this.documentService.getDocumentsByReference(affaire.reference).subscribe(documents => {
+  //       documentsByAffaire[affaire.reference] = documents.length;
+  //     });
+  //   });
+  //   return documentsByAffaire;
+  // }
   
   //==Statistiques===//
   public findAllparRegion(): Observable<Affaire[]> {
