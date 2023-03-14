@@ -19,11 +19,11 @@ export class AffaireComponent implements OnInit {
 
   affaire: Affaire = new Affaire();
 
-  affaireRecherche:any;
+  affaireRecherche: any;
   affaires!: any[];
   documents!: any[];
   taches!: any[];
-  statut:string;
+  statut: string;
   idAffaire!: number;
   reference!: string;
   titre!: string;
@@ -47,11 +47,9 @@ export class AffaireComponent implements OnInit {
       });
     });
 
-
-
   }
 
-  onSubmit(){
+  onSubmit() {
     this.rechercher();
   }
 
@@ -76,19 +74,19 @@ export class AffaireComponent implements OnInit {
     )
   }
   rechercher() {
-    if (this.reference == ''){
+    if (this.reference == '') {
       this.affaireService.rechercher(this.reference).subscribe(
         data => { this.affaireRecherche = data; });
     } else {
-      this.affaireService.findAll().subscribe( data => {
+      this.affaireService.findAll().subscribe(data => {
         this.affaireRecherche = data.filter(affaire => affaire.reference == this.reference);
       });
     }
-   
+
 
   }
- 
-  
+
+
   findDocuments() {
     this.affaireService.findAll().subscribe(affaires => {
       this.affaires = affaires;
@@ -100,7 +98,7 @@ export class AffaireComponent implements OnInit {
       });
     });
   }
-  
+
 
   editAffaire(affaire: Affaire) {
     localStorage.removeItem("editAffaireId");

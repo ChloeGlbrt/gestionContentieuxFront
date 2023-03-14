@@ -98,6 +98,7 @@ export class TacheComponent implements OnInit {
   getTache() {
     this.tacheService.findAll().subscribe(data => {
       this.taches = data.filter((tache) => tache.utilisateurFK.idUtilisateur === this.idUser);
+
       this.calendarOptions.events = this.taches.map(tache => {
         return {
           title: tache.titre,
@@ -112,6 +113,7 @@ export class TacheComponent implements OnInit {
       })
     })
   }
+
   /*toPlanning() {
     this.router.navigate(['/planning']);
   }*/
