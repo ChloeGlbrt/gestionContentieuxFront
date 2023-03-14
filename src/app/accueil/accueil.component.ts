@@ -241,8 +241,9 @@ findAllAffaires() {
 countAffairesByRegion() {
   const count = {};
   for (const affaire of this.affaires) {
-    const tribunalFK = affaire.taches ? affaire.taches.tribunalFK : null;
-    const region = tribunalFK ? tribunalFK.region : null;
+    const tache = affaire.taches ? affaire.taches[0] : null;
+    console.log('tache de l\'affaire : ', tache);
+    const region = tache ? tache.tribunalFK.region : null;
     console.log('Region de l\'affaire : ', region);
     if (region) {
       if (!count[region]) {
@@ -254,6 +255,7 @@ countAffairesByRegion() {
   }
   return count;
 }
+
 
 //===Récupération profil utilisateur méthode===//
 findProfil(id:number){

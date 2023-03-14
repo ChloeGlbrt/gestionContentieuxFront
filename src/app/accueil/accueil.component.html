@@ -251,15 +251,15 @@
                               <th>Region</th>
                               <th class="text-center">Number of Courts</th>
                               <th class="text-center">Number of Tasks</th>
-                              <th class="text-center">Cases</th>
+                           <!--   <th class="text-center">Cases</th>-->
                             </tr>
                           </thead>
                           <tbody>
                             <tr *ngFor="let r of region">
                               <td>{{ r }}</td>
-                              <td class="text-center">{{ RegionTribunalCount[r] || 0 }}</td>
-                              <td class="text-center">{{ TacheByRegion[r] || 0 }}</td>
-                              <td class="text-center">{{AffaireByRegion[r] || 0}}</td>
+                              <td class="text-center" [ngStyle]="{'color': RegionTribunalCount[r] != null ? 'red' : 'inherit', 'font-weight': RegionTribunalCount[r] != null ? 'bold' : 'normal'}">{{ RegionTribunalCount[r] || 0 }}</td>
+                              <td class="text-center" [ngStyle]="{'color': TacheByRegion[r] != null ? 'red' : 'inherit', 'font-weight': TacheByRegion[r] != null ? 'bold' : 'normal'}">{{ TacheByRegion[r] || 0 }}</td>
+                           <!--  <td class="text-center">{{AffaireByRegion[r] || 0}}</td>-->
                             </tr>
                           </tbody>
                         </table>                        
