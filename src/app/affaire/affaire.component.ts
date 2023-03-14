@@ -92,8 +92,10 @@ export class AffaireComponent implements OnInit {
       this.affaires = affaires;
       const requests = this.affaires.map(affaire => this.documentService.getDocumentsByReference(affaire.reference));
       forkJoin(requests).subscribe(results => {
+        this.documentsCount = {};
         results.forEach((documents, index) => {
-          this.documentsCount[this.affaires[index].reference] = documents.length;
+          const reference = this.affaires[index].reference;
+          this.documentsCount[reference] = documents.length;
         });
       });
     });
