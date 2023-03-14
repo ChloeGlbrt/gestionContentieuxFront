@@ -9,12 +9,13 @@ import { Utilisateur } from '../models/utilisateur';
 import { AppService } from '../app.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 
+
+declare const Landbot: any;
+
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
-
-  
 })
 export class AccueilComponent implements OnInit {
 
@@ -25,6 +26,18 @@ export class AccueilComponent implements OnInit {
   seletedUser! : any;
   user : Utilisateur = new Utilisateur();
   idUser : any;
+  region: string[] = [
+    'Auvergne-Rhône-Alpes',
+    'Bourgogne-Franche-Comté', 'Bretagne',
+    'Centre-Val de Loire', 'Corse',
+    'Grand Est',
+    'Hauts-de-France',
+    'Île-de-France',
+    'Normandie', 'Nouvelle-Aquitaine',
+    'Occitanie',
+    'Pays de la Loire',
+    'Provence-Alpes-Côte d\'Azur',
+  ];
 
   constructor(
     private affaireService :AffaireService,
@@ -35,9 +48,20 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
 
+     //===ChatBot===//
+    const landbotScript = document.createElement('script');
+    landbotScript.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
+    landbotScript.onload = () => {
+      const myLandbot = new Landbot.Livechat({
+        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1520107-V5YKLLMHQ1HQ1NNS/index.json',
+      });
+    };
+    document.head.appendChild(landbotScript); 
+  
     //===Récupération profil utilisateur dès ouverture page===/
-    this.idUser =this.appService.idUser;
+    this.idUser = this.appService.idUser;
     this.findProfil(this.idUser);
+    this.findAllUtilisateur();
 
   //===Obtenir date du jour===//
   this.getDate();
@@ -46,8 +70,9 @@ export class AccueilComponent implements OnInit {
   this.findAllAffaireEncours();
   this.findAllAffaireTraite();
   this.findAllAffaireArchive();
-  this.findAllTache();
-  this.findAllUtilisateur();
+  this.findAllTaches()
+  this.findAllTribunaux();
+  this.findAllAffaires();
 
   //===Graphique===//  
     this.affaireService.findAll().subscribe(() => {
@@ -153,26 +178,81 @@ findAllAffaireArchive(){
 //===Nombre affaires par tribunal===//
 tribunaux!: any[];
 taches! : any[];
-countTachesByTribunal : any;
 RegionTribunalCount : any;
-TacheByTribunal : any ;
-
+TacheByRegion : any ;
+AffaireByRegion : any;
 
 findAllTribunaux() {
-  this.tribunalService.findAll().subscribe(data => {
-    this.tribunaux = data;
-    let RegionTribunal = this.tribunaux.filter(t => t.region === 'Bretagne');
-    this.RegionTribunalCount = RegionTribunal.length});
+  this.tribunalService.findAllparRegion().subscribe(
+    data => {
+      this.tribunaux = data;
+      this.RegionTribunalCount = this.countTribunauxByRegion();
+    },
+    error => console.error(error)
+  );
+}
+
+countTribunauxByRegion() {
+  const count = {};
+  for (const tribunal of this.tribunaux) {
+    if (!count[tribunal.region]) {
+      count[tribunal.region] = 1;
+    } else {
+      count[tribunal.region]++;
     }
+  }
+  return count;
+}
 
+findAllTaches() {
+  this.tacheService.findAllparRegion().subscribe(
+    data => {
+      this.taches = data;
+      this.TacheByRegion = this.countTachesByRegion();
+    },
+    error => console.error(error)
+  );
+}
 
+countTachesByRegion() {
+  const count = {};
+  for (const tache of this.taches) {
+    const region = tache.tribunalFK.region;
+    if (!count[region]) {
+      count[region] = 1;
+    } else {
+      count[region]++;
+    }
+  }
+  return count;
+}
 
-findAllTache() {
-  this.tribunalService.findAll().subscribe(data =>{
-    this.tribunaux = data ;
-    let TacheByTribunal = this.tribunaux.filter(t => t.taches)
-    this.countTachesByTribunal =  TacheByTribunal.length
-});
+findAllAffaires() {
+  this.affaireService.findAllparRegion().subscribe(
+    data => {
+      console.log('Données de toutes les affaires : ', data);
+      this.affaires = data;
+      this.AffaireByRegion = this.countAffairesByRegion();
+    },
+    error => console.error(error)
+  );
+}
+
+countAffairesByRegion() {
+  const count = {};
+  for (const affaire of this.affaires) {
+    const tribunalFK = affaire.taches ? affaire.taches.tribunalFK : null;
+    const region = tribunalFK ? tribunalFK.region : null;
+    console.log('Region de l\'affaire : ', region);
+    if (region) {
+      if (!count[region]) {
+        count[region] = 1;
+      } else {
+        count[region]++;
+      }
+    }
+  }
+  return count;
 }
 
 //===Récupération profil utilisateur méthode===//

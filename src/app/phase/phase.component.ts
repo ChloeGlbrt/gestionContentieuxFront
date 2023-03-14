@@ -18,10 +18,10 @@ export class PhaseComponent implements OnInit {
   phases!: any[];
   tacheFK!: any[];
   phase: Phase = new Phase();
-  tache:Tache =new Tache();
+  tache: Tache = new Tache();
 
 
-  constructor(private phaseService: PhaseService,private tacheService: TacheService, private affaireService : AffaireService, private router: Router, private appService: AppService) { }
+  constructor(private phaseService: PhaseService, private tacheService: TacheService, private affaireService: AffaireService, private router: Router, private appService: AppService) { }
 
 
   ngOnInit(): void {
@@ -33,11 +33,11 @@ export class PhaseComponent implements OnInit {
     this.phaseService.findAll().subscribe(data => { this.phases = data });
   }
 
-  findAllTache(){
-    this.tacheService.findAll().subscribe(data =>{ this.tacheFK = data});
+  findAllTache() {
+    this.tacheService.findAll().subscribe(data => { this.tacheFK = data });
   }
   savePhase() {
-    this.tache.phases= this.phases;
+    this.tache.phases = this.phases;
     this.phaseService.save(this.phase).subscribe(
       () => {
         this.findAllPhase();

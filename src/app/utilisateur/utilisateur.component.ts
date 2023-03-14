@@ -4,6 +4,8 @@ import { AppService } from '../app.service';
 import { Utilisateur } from '../models/utilisateur';
 import { RoleService } from '../services/role.service';
 import { UtilisateurService } from '../services/utilisateur.service';
+import * as $ from "jquery";
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-utilisateur',
@@ -17,6 +19,8 @@ export class UtilisateurComponent {
   // ! ==> le tableau n'est pas initialisé
   users!: any[];
   roles!: any[];
+  nomUtilisateur!: string;
+  nomRecherche: any;
   utilisateur: Utilisateur = new Utilisateur();
 
 
@@ -28,6 +32,30 @@ export class UtilisateurComponent {
   ngOnInit(): void {
     this.findAllUtilisateurs();
     this.findAllRole();
+    this.nomUtilisateur = '';
+    this.rechercher();
+
+    $(document).ready(function () {
+      $("#rechercheavancee").hide();
+      $("#boutonrecherche").click(function () {
+        $("#rechercheavancee").toggle(1500);
+      });
+    });
+  }
+
+  onSubmit() {
+    this.rechercher();
+  }
+
+  rechercher() {
+    if (this.nomUtilisateur == '') {
+      this.utilisateurService.rechercher(this.nomUtilisateur).subscribe(
+        data => { this.nomRecherche = data; });
+    } else {
+      this.utilisateurService.findAll().subscribe(data => {
+        this.nomRecherche = data.filter(utilisateur => utilisateur.nomUtilisateur == this.nomUtilisateur);
+      });
+    }
   }
 
   findAllUtilisateurs() {
@@ -43,7 +71,8 @@ export class UtilisateurComponent {
   saveUtilisateur() {
     this.utilisateurService.save(this.utilisateur).subscribe(
       () => {
-        this.findAllUtilisateurs(); // MAJ de la liste des utilisateurs
+        this.rechercher();
+        // this.findAllUtilisateurs(); // MAJ de la liste des utilisateurs
         this.utilisateur = new Utilisateur(); // Vider le formulaire pour avoir une nouvelle ligne
       }
     )
@@ -51,7 +80,8 @@ export class UtilisateurComponent {
   deleteUtilisateur(id: number) {
     this.utilisateurService.delete(id).subscribe(
       () => {
-        this.findAllUtilisateurs();
+        this.rechercher();
+        // this.findAllUtilisateurs();
       }
     )
   }
@@ -85,25 +115,6 @@ export class UtilisateurComponent {
         return 'Inconnue';
     }
   }
-
-
-  /*
-   updateAccountStatus(enabled: boolean) {
-     if (this.utilisateur.enabled === true) {
-       this.utilisateur.enabled = false;
-     } else {
-       this.utilisateur.enabled = true;
-     }
-   }
- 
-    setAccountStatusTrue(data) {
-      this.utilisateur.enabled = true;
-    }
-  
-    setAccountStatusFalse(data) {
-      this.utilisateur.enabled = false;
-    }
-    */
 
   authenticated() {
     return this.appService.authenticated;

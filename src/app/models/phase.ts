@@ -5,5 +5,5 @@ export class Phase {
     nom!: string;
     dateDebut!: Date;
     dateFin!: Date;
-    tacheFK! : Tache[];
+    tacheFK!: Tache[];
 }
