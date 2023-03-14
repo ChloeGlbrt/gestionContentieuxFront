@@ -18,6 +18,7 @@ import listPlugin from '@fullcalendar/list'
 
 import { Utilisateur } from '../models/utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
+import { RoleService } from '../services/role.service';
 
 @Component({
   selector: 'app-tache',
@@ -60,7 +61,7 @@ export class TacheComponent implements OnInit {
   phase: Phase = new Phase();
 
 
-  constructor(private modalService: NgbModal, private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private utilisateurService: UtilisateurService, private appService: AppService) { }
+  constructor(private modalService: NgbModal, private roleService: RoleService, private tacheService: TacheService, private router: Router, private phaseService: PhaseService, private affaireService: AffaireService, private tribunalService: TribunalService, private utilisateurService: UtilisateurService, private appService: AppService) { }
 
   ngOnInit(): void {
     this.findAllTache();
@@ -105,9 +106,9 @@ export class TacheComponent implements OnInit {
           description: tache.description,
           allDay: true,
           displayEventTime: false,
-          backgroundColor: 'red', 
+          backgroundColor: 'red',
           borderColor: 'red'
-          
+
         }
       })
     })
@@ -116,7 +117,7 @@ export class TacheComponent implements OnInit {
     this.router.navigate(['/planning']);
   }*/
 
- 
+
   findOne(id: number) {
     this.utilisateurService.findOne(id).subscribe(data => { this.user = data });
   }
@@ -203,7 +204,7 @@ export class TacheComponent implements OnInit {
   }
 
   getTachesUtilisateurConnecte(): any[] {
-    return this.taches.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur);
+    return this.taches.filter(t => t.utilisateurFK.idUtilisateur === this.user.idUtilisateur || this.user.roles[0].idRole === 1);
   }
 
 }
